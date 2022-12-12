@@ -1,0 +1,184 @@
+<div class="row">
+ 
+     
+    <form action="/upload_item" method="POST" enctype="multipart/form-data" id="uploadSubmit">
+
+      <h3>Upload Past paper</h3>
+
+     
+       <div class="inputbox" style="display: flex; text-transform: none;">
+        <h2>Select School:</h2>
+          <select name="school" id="school">
+            
+          </select>
+       </div>
+
+  
+       
+       <div class="inputbox" style="display: flex;">
+        
+        <h2>Select Program:</h2>
+        <select name="program" id="program">
+
+        </select>
+       </div>
+
+      
+
+       <div class="inputbox" style="display: flex;">
+        
+        <h2>Select year of study:</h2>
+        <select name="yearOfStudy" id="yearOfStudy">
+
+        </select>
+       </div>
+
+       <div class="inputbox" style="display: flex;">
+        
+        <h2>Select course:</h2>
+        <select name="course" id="course">
+
+        </select>
+       </div>
+
+       <!-- <div class="inputbox">
+         <input type="text"  id="course" name="course" placeholder="course" required />
+       </div> -->
+
+       <div class="inputbox" style="display: flex;">
+        <h2>Select assessmentType: </h2>
+  
+        
+        <select name="assessmentType" id="assessmentType" >
+            <option label="sessional" value="sessional"></option>
+              <option label="assignment" value="assignment"></option>
+              <option label="quiz" value="quiz"></option>
+              <option label="test 1" value="test 1"></option>
+              <option label="test 2" value="test 2"></option>
+          </select>
+
+       </div>
+       
+      
+       <div class="inputbox" style="display: flex;">
+
+        <h2>enter year of past paper:</h2>
+
+        <input type="number" min="1990" max="2024" id="year" name="year" placeholder="year" required />
+      </div><br>
+            
+      <div class="inputbox">
+       <!-- <label for="pastPaper"><h3><strong>upload past paper:</strong></h3></label> -->
+       <input type="file" name="pastPaper" required>
+     </div> <br>
+    
+      <button id="submit">submit</button> 
+      <!-- <p style="background-color: cadetblue; cursor: pointer; color: black; border-radius: 5px; height: fit-content; width:fit-content; padding: 2px;"
+       id="submit">submit</p> -->
+
+
+    </form>
+      
+  </div>
+  <br><br>
+   
+
+  <script>
+      let schools = document.getElementById('school')
+      let schoolsValue;
+      let program = document.getElementById('program')
+      let programValue;
+      let yearOfStudy = document.getElementById('yearOfStudy')
+      let yearOfStudyValue;
+      let course = document.getElementById('course')
+      let courseValue;
+
+     fetch('/JSON/cbuZit.json')
+     .then(response=> response.json())
+     .then(function(data){
+
+       ////////////////////////////school selection/////////////////////////////////////         
+        // const schoolArray = []
+        const InitialProgramArray = []
+        data.forEach(element => {
+              schools.innerHTML += `<option style="text-transform: none;" label="${element.school}" value="${element.school}"></option>`   
+          });
+
+
+
+          schools.addEventListener('click',(e)=>{
+
+                const programArray = []
+
+                  data.forEach(element=>{
+                    element.programs.forEach(program=>{
+                      // console.log(program)
+                      if(element.school == e.target.value){
+                        programArray.push(`<option label="${program.programName}" value="${program.programName}"></option>`)
+                        // programArray.
+                      }
+                    })
+                      
+                  })
+                  program.innerHTML = programArray   ////when there is a selection
+                  schoolsValue = e.target.value
+                  console.log(schoolsValue.split('(')[1].split(')')[0])
+
+          })
+          
+////////////////////program selection////////////////////////
+
+
+
+/////////////////////////////
+
+          program.addEventListener('click',(e)=>{
+            const yearOfStudyArray = []
+           
+
+            data.forEach(element=>{
+              element.programs.forEach(program=>{
+                
+                program.COURSES.forEach(content=>{
+                  if(e.target.value == program.programName){
+                    yearOfStudyArray.push(`<option label="${content.year}" value="${content.year}"></option>`)
+                  }
+                })
+              })
+                
+            })
+            yearOfStudy.innerHTML = yearOfStudyArray   ////when there is a selection
+            programValue = e.target.value
+          })
+
+////////////////////yearOfStudy selection////////////////////////
+          
+      yearOfStudy.addEventListener('click',(e)=>{
+        const coursesArray = []
+           
+
+            data.forEach(element=>{
+              element.programs.forEach(program=>{
+                
+                program.COURSES.forEach(content=>{
+                  
+                  content.courses.forEach(Courses=>{
+                    if(e.target.value == content.year && program.programName == programValue){
+                    coursesArray.push(`<option label="${Courses}" value="${Courses}"></option>`)
+                  }
+                  })
+                })
+              })
+                
+            })
+            course.innerHTML = coursesArray   ////when there is a selection
+            yearOfStudyValue = e.target.value
+
+      })     
+
+          
+     })
+
+    
+
+  </script>

@@ -1,0 +1,94 @@
+[
+    
+    {
+        "school":"SNR",
+        "programs": [
+            {
+                "programName":"Bio-energy Science",
+                "COURSES":[
+                    {
+                        "year":"1st year",
+                        "courses":["NR130","NR100"]
+                    },  
+                    {
+                        "year":"2nd year",
+                        "courses":["BE250","NR210","BE220","BE200","BE240","BE210"]
+                    },
+                    {
+                        "year":"3rd year",
+                        "courses":["BE350","NR330","WS340","BE330","WS320","BE310"]
+                    },
+                    {
+                        "year":"4th year",
+                        "courses":["BE420","BE460","NR461","BE490","BE470","BE410"]
+                    }  
+                ]
+            },
+            {
+                "programName":"Wild Science and Technology",
+                "COURSES":[
+                    {
+                        "year":"1st year",
+                        "courses":["WS140","NR130","NR100"]
+                    }, 
+                    {
+                        "year":"2nd year",
+                        "courses":["NR210","WS250","WS210","WS200","WS230","WS220"]
+                    },
+                    {
+                        "year":"3rd year",
+                        "courses":["WST300","WSM310","FO330","NR330","WS350","WS320","OR370"]
+                    },
+                    {
+                        "year":"4th year",
+                        "courses":["WS461","WST420","WS490","WS470","WS460","WS430"]
+                    }
+                ]
+            },
+            {
+                "programName":"Wildlife Management",
+                "COURSES":[
+                    {
+                        "year":"1st year",
+                        "courses":["NR130","NR100"]
+                    }, 
+                    {
+                        "year":"2nd year",
+                        "courses":["FO210","NR240","NR230","NR210","WM220","WM221","WM201","WM210"]
+                    },
+                    {
+                        "year":"3rd year",
+                        "curses":["WM350","WM340","WM330","WM310","NR330","NR350","FO330"]
+                    },
+                    {
+                        "year":"4th year",
+                        "courses":["WM460","WM480","WM470","NR461","NR440","WM450","WM420","WM410"]
+                    }
+                ]
+            },
+            {
+                "programName":"Forestry",
+                "COURSES":[
+                    {
+                        "year":"1st year",
+                        "courses":["NR130","NR100"]
+                    }, 
+                    {
+                        "year":"2nd year",
+                        "courses":["PE200","NR230","PP250","NR240","NR210","NR200"]
+                    },
+                    {
+                        "year":"3rd year",
+                        "curses":["NR320","NR330","NR360","NR340","NR300","NR310"]
+                    },
+                    {
+                        "year":"4th year",
+                        "courses":["NR430","NR410","CC450","NR420","NR461","NR440"]
+                    }
+                ]
+            }
+
+        ] 
+    
+    }
+]
