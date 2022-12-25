@@ -47,7 +47,7 @@ router.get('/UploadPapers',async (req,res)=>{
     })
 })
 ////saving paper to database
-router.post('/UploadPapers',upload.single('pastPaper'),async (req,res)=>{
+router.post('/upload_item',upload.single('pastPaper'),async (req,res)=>{
 
     const paperName  = req.file.filename
     const SchoolNameEdit =req.body.school.split('(')[1].split(')')[0]
