@@ -34,19 +34,19 @@ const modalContent = `
      </div>
 
      <div class="searchBar" onclick='viewSearchBar()'>
-             <i class='fa fa-search'>&circleddash;</i>
+             <i class='fa fa-search'></i>
      </div>
 
      <div class="wrapper">
-        <form action="/search" method="get">
+        <form action="/search" method="get"  id="submitForm" >
         
                 <div class="search-input">
                 
-                    <input type="text" name="course" placeholder="type course code" id="searchInput">
+                    <input type="text" name="course" placeholder="type course code" id="searchInput" required>
                             <div class="autocom-box">
                                 
                             </div>
-                            <div class="icon"><i class='fa fa-search'><button type="submit">&circleddash;</button></i></div>
+                            <div class="icon"><i class='fa fa-search'></i></div>
                 </div>
         
         </form>

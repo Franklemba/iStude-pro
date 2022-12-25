@@ -47,7 +47,8 @@ section{
     text-align: center;
     color: #fff;
     text-transform: uppercase;
-    padding-bottom: 3.5rem;
+    /* padding-bottom: 3.5rem; */
+    padding: 5%;
     font-size: 4rem;
 }
 
@@ -84,7 +85,7 @@ section{
 }
 .header .logo img{
     height: 4rem;
-    opacity: 0;
+    opacity: 1;
 }
 .header .navbar a{
     margin: 0 1rem;
@@ -213,11 +214,11 @@ section{
     width: 100%;
     text-align: center;
 }
-.contact p{
+/* .contact p{
     color: #fff;
     justify-content: center;
     margin: 1% 30%;
-}
+} */
 .schoolz{
    margin-top: 50px;
    display: flex;
@@ -318,10 +319,9 @@ section{
 }
 .about{
     opacity: 1;
+    padding: 0%;
 }
-.about .row{
-    display: flex;
-    align-items: center;
+.about .row{ 
     background: var(--black);
     flex-wrap: wrap;
 }
@@ -353,6 +353,7 @@ section{
 }
 .contact{
     opacity: 1;
+    padding: 0%;
 }
 .contact .row{
     display: flex;
@@ -506,9 +507,22 @@ section{
 .row .inputbox{
     padding: 10px;
 }
-
+.row .inputbox select{
+    font-size: 140%;
+    max-width: 70vw;
+}
+.row .inputbox option{
+    font-size: 80%;
+    max-width: 60vw;
+}
 .row .inputbox input{
-    font-size: 30px;
+    font-size: 140%;
+}
+
+#submit{
+    background-color: rgb(142, 175, 235);
+    padding: 2px;
+    font-weight: 500;
 }
 
 /* //////////////iStude pro newly inserted code///////////// */
@@ -851,7 +865,8 @@ section{
 /*for the papers the pdf's*/
 
  .paperView {
-    margin: 1% 10%;
+    /* margin: 1% 10%; */
+    background-color:white ; margin-top: 10%; padding: 5%;
     position: relative;
 }
 .paperView a{
@@ -875,14 +890,15 @@ section{
 }
 
 /*for the papers if they are not available*/
-.paperView .Non_Paper {
-    margin: 1% 10%;
+.Non_Paper {
+    background-color:#ccc ; margin-top: 20%; padding: 5%;
+    /* margin: 1% 10%; */
     position: relative;
-    background-color: #ccc; 
+    /* background-color: #ccc;  */
     border: 0.5px ;
     border-style: groove;
 }
-.paperView .Non_Paper p{
+.Non_Paper p{
     font-size: 180%;
     color: var(--black);
     opacity: 0.7;
@@ -1199,8 +1215,8 @@ width: auto;
         color: crimson;
     }
     .programmes .accordion .contentBx .content ul li{
-    margin: 2px  10px;
-    font-size: 14px;
+        margin: 2px  10px;
+        font-size: 14px;
     }
 
 }

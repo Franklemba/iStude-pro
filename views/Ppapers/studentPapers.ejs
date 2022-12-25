@@ -1,12 +1,18 @@
+
 <div class="row">
- 
+
+<% if (mode == 'final') { %>
+  <div class="demo">
+  </div>
+<% } %>
+
      
-    <form action="/upload_item" method="POST" enctype="multipart/form-data" id="uploadSubmit">
+   <form action="/upload_item" method="POST" enctype="multipart/form-data" id="uploadSubmit">
 
       <h3>Upload Past paper</h3>
 
      
-       <div class="inputbox" style="display: flex; text-transform: none;">
+       <div class="inputbox" >
         <h2>Select School:</h2>
           <select name="school" id="school">
             
@@ -15,7 +21,7 @@
 
   
        
-       <div class="inputbox" style="display: flex;">
+       <div class="inputbox"  >
         
         <h2>Select Program:</h2>
         <select name="program" id="program">
@@ -25,7 +31,7 @@
 
       
 
-       <div class="inputbox" style="display: flex;">
+       <div class="inputbox" >
         
         <h2>Select year of study:</h2>
         <select name="yearOfStudy" id="yearOfStudy">
@@ -33,7 +39,7 @@
         </select>
        </div>
 
-       <div class="inputbox" style="display: flex;">
+       <div class="inputbox" >
         
         <h2>Select course:</h2>
         <select name="course" id="course">
@@ -41,11 +47,8 @@
         </select>
        </div>
 
-       <!-- <div class="inputbox">
-         <input type="text"  id="course" name="course" placeholder="course" required />
-       </div> -->
 
-       <div class="inputbox" style="display: flex;">
+       <div class="inputbox" >
         <h2>Select assessmentType: </h2>
   
         
@@ -60,7 +63,7 @@
        </div>
        
       
-       <div class="inputbox" style="display: flex;">
+       <div class="inputbox" >
 
         <h2>enter year of past paper:</h2>
 
@@ -68,22 +71,51 @@
       </div><br>
             
       <div class="inputbox">
-       <!-- <label for="pastPaper"><h3><strong>upload past paper:</strong></h3></label> -->
-       <input type="file" name="pastPaper" required>
+       <input id="pastPaper" type="file" name="pastPaper" required>
      </div> <br>
     
-      <button id="submit">submit</button> 
-      <!-- <p style="background-color: cadetblue; cursor: pointer; color: black; border-radius: 5px; height: fit-content; width:fit-content; padding: 2px;"
-       id="submit">submit</p> -->
+      <span id="submit">submit</span>
+  </form>
 
+  <div id="papers" style="display: none;" >
+    <% StudentPapers.forEach(element => { %>
+      <% element.papers.forEach(paper => { %>
 
-    </form>
-      
+             <%=element.program%>_<%=paper%>
+      <% }) %>
+    <% }) %>
+  </div>
+  
+   
   </div>
   <br><br>
+
+  <!-- <script class="papers">
+    
+  </script> -->
    
 
-  <script>
+ <script>
+
+      const allPapers = document.getElementById('papers')
+      const papersArray = allPapers.innerText.trim().toString().split('\n')
+      const newArray = []
+      papersArray.forEach(paper=>{
+        if(paper.trim().length > 3){
+          newArray.push(paper.trim())
+        }        
+     })
+
+
+
+      
+      
+      let myWay = document.querySelector('.demo')
+
+      if(myWay){
+        alert('upload was successful')
+      }
+
       let schools = document.getElementById('school')
       let schoolsValue;
       let program = document.getElementById('program')
@@ -92,6 +124,17 @@
       let yearOfStudyValue;
       let course = document.getElementById('course')
       let courseValue;
+      let assessmentType = document.getElementById('assessmentType')
+      let year = document.getElementById('year')
+      const application = document.getElementById('pastPaper')
+      const submit = document.getElementById('submit')
+      const uploadSubmit = document.getElementById('uploadSubmit')
+      const applicationMimeType = [    
+                                    "application/pdf",
+                                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                                    "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+                                  ]
+
 
      fetch('/JSON/cbuZit.json')
      .then(response=> response.json())
@@ -101,7 +144,7 @@
         // const schoolArray = []
         const InitialProgramArray = []
         data.forEach(element => {
-              schools.innerHTML += `<option style="text-transform: none;" label="${element.school}" value="${element.school}"></option>`   
+              schools.innerHTML += `<option label="${element.school}" value="${element.school}"></option>`   
           });
 
 
@@ -176,9 +219,34 @@
 
       })     
 
+
           
      })
 
-    
+     console.log(newArray)
+     var uploadPapers = application.files
+     submit.addEventListener('click',()=>{
+        //  console.log(application.files)
+         const collectedInfo = `${program.value}_${course.value} ${assessmentType.value} ${year.value}.pdf`;
+         if(newArray.includes(collectedInfo) == true){
+             alert("This paper already exists")
+         }else if(program.value.length == 0 || course.value.length == 0 || assessmentType.value.length == 0 || year.value.length == 0){
+             alert("please make sure to select all fields")
+             console.log(application.files[0].type,application.files[0].size)
+         }else{
+            if(applicationMimeType.includes(application.files[0].type) == true && application.files[0].size <= 5000000){
+              uploadSubmit.submit();
+            }else{
+              alert("error uploading file, either the file format is invalid or file size is larger than recommended")
+            }
+         }
+        
 
-  </script>
+         
+         
+     })
+
+</script> 
+
+
+  

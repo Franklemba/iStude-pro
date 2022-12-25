@@ -1,66 +1,44 @@
-<section>
-    <div class="paperView" style="background-color:white ; margin-top: 6%; padding: 5%;">
-            <% if (content[0]) { %>
-            <div>
-        
-                <h2 id="schoolName"><%=content[0].school%></h2>
-                <p><strong>program:</strong><%=content[0].program%></p>
-                <p><strong>year:</strong><%=content[0].yearOfStudy%></p>
-                <p><strong>course:</strong><%=content[0].course%></p>
-            </div>
-            <% content.forEach(element => { %>
-                <div>
-                   <p><strong><%=element.assessmentType%></strong></p>
-                    <% element.papers.forEach(paper => { %>
-                      <a  href='uploads/cbu/<%=element.school%>/<%=paper%>' download>
-                          <ul>
-                              <li><i class="bi bi-file-earmark-pdf-fill"><%=paper%></i></li>
-                              <li><div class="fa fa-download" id="download-btn"></div></li>
-                          </ul>
-                      </a>
+<section class="pastPaperView">
+   
+
+                    <% content.forEach(element => { %>
+                        
+                            
+                                <% if (element.papers.length != 0) { %>
+                                <div class="paperView">
+                                    <h2><%=element.school%></h2>
+                                     <p><strong><%=element.program%>_<%=element.assessmentType%></strong></p>
+                                        <% element.papers.forEach(paper => { %>
+
+                                                <a  href='uploads/cbu/<%=element.school%>/<%=paper%>' download>
+                                                    <ul>
+                                                        <li><i class="bi bi-file-earmark-pdf-fill"><%=paper%></i></li>
+                                                        <li><div class="fa fa-download" id="download-btn"></div></li>                                                        
+                                                    </ul>
+                                                </a>
+
+                                        <% }) %>
+                                </div>
+                                <% } %>
+
                     <% }) %>
-                </div>
-          <% }) %>
-            <% }else{%>
-                <h1>Oops!</h1>
-               <h2>past papers for this course are not yet available</h2>
-            <% } %>
+
+                       
+    
           
         
-    </div>
 </section>
 
 <script>
-    let school = document.getElementById('schoolName')
-    let schoolName = school.textContent
-    let fullSchoolName;
-    console.log(schoolName)
-    switch(schoolName){
-                    case 'SICT':
-                        fullSchoolName = 'School of Information & Communication Technology ';
-                        break;
-                    case 'SBE':
-                        fullSchoolName = 'School of the Built Environment';
-                        break;
-                    case 'SofB':
-                        fullSchoolName = 'School of Business';
-                        break;
-                    case 'BENG':
-                        fullSchoolName = 'School of Engineering';
-                        break;
-                    case 'SMNS':
-                        fullSchoolName = 'School of Mathematics and Natural Science';
-                        break;
-                    case 'SMMS':
-                        fullSchoolName = 'School of Mines and Mineral Science';
-                        break;
-                    case 'SNR':
-                        fullSchoolName = 'School of Natural Resources';
-                        break;
-                    default:
-                        break;
-                }
-        school.innerHTML = fullSchoolName;
-        
+    const pastPaperView = document.querySelector('.pastPaperView')
+    
+    if(pastPaperView.innerText.length == 0){
+        pastPaperView.innerHTML = `
+                      <div class="Non_Paper" >
+                          <h1>Oops!</h1>
+                          <h2>past papers for this course are not yet available</h2>
+                       </div>
+                    `
+    }
 
 </script>

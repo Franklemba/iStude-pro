@@ -23,6 +23,7 @@ const mongoose = require('mongoose')
   app.use(expressLayouts)
   app.use(express.static(__dirname + '/public/'))
   app.use(bodyParser.urlencoded({limit: '10mb', extended: false}))
+  app.use(express.urlencoded({ extended: false }))
 
 //////setting up the server///////
 

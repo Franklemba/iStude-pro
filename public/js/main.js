@@ -190,7 +190,7 @@ window.onload = function(){
     
         document.querySelector('.loaderBox span .logo img').style.opacity = 1;
         setTimeout(function(){
-            document.querySelector('.schoolz').style.opacity = 1 
+            // document.querySelector('.schoolz').style.opacity = 1 
             document.querySelector('.menuIcon').style.opacity = 1
             document.querySelector('.home').style.opacity = 1
             document.querySelector('.about').style.opacity = 1

@@ -31,6 +31,7 @@ let DisplayCourses =(data,SchoolLabelName)=>{
                 }
             })
         })
+        console.log(allCoursesArray)
     /////////////________//////////////
 
      /////////////////////________///////////////////
@@ -57,7 +58,7 @@ let DisplayCourses =(data,SchoolLabelName)=>{
         })
 
         allCoursesArray.forEach(data=>{
-            // document.querySelector('.courseList').innerHTML += `<li><h2 onclick="DemoFimo.setDemo('${data}','${programName}','${SchoolLabelName}')" >${data}</h2></li00>`
+    
             document.querySelector('.courseList').innerHTML += `<a href="/${data}"><li><h2>${data}</h2></li></a>`
         })
 
@@ -73,7 +74,7 @@ let DisplayCourses =(data,SchoolLabelName)=>{
                     if(details == 'accordion courses'){
                         document.querySelector('.courseList').innerHTML  = ` `;
                         allCoursesArray.forEach(data=>{
-                            document.querySelector('.courseList').innerHTML += `<li><h2 onclick="DemoFimo.setDemo('${data}','${programName}','${SchoolLabelName}')" >${data}</h2></li00>`
+                            document.querySelector('.courseList').innerHTML += `<a href="/${data}"><li><h2>${data}</h2></li></a>`
                         })
                         document.querySelectorAll('.yearList li h1').forEach(data=>{
                             data.style= `
@@ -143,7 +144,8 @@ var ClickedYear = (programName,year,SchoolLabelName)=>{
 
 
     allCoursesArray.forEach(data=>{
-        courseList.innerHTML += `<li onclick="DemoFimo.setDemo('${data}','${programName}','${SchoolLabelName}')"><h2>${data}</h2></li>`
+        // courseList.innerHTML += `<li onclick="DemoFimo.setDemo('${data}','${programName}','${SchoolLabelName}')"><h2>${data}</h2></li>`
+        courseList.innerHTML += `<a href="/${data}"><li><h2>${data}</h2></li></a>`
     })
      ///////_________///////
 }

@@ -39,11 +39,15 @@ router.get('/schools',(req,res)=>{
 })
 
 /////upload page
-router.get('/UploadPapers',(req,res)=>{
-    res.render('Ppapers/studentPapers')
+router.get('/UploadPapers',async (req,res)=>{
+    const studentPapers = await StudentPapers.find({})
+    res.render('Ppapers/studentPapers',{
+        StudentPapers: studentPapers,
+        mode: 'initial'
+    })
 })
 ////saving paper to database
-router.post('/upload_item',upload.single('pastPaper'),async (req,res)=>{
+router.post('/UploadPapers',upload.single('pastPaper'),async (req,res)=>{
 
     const paperName  = req.file.filename
     const SchoolNameEdit =req.body.school.split('(')[1].split(')')[0]
@@ -67,7 +71,13 @@ router.post('/upload_item',upload.single('pastPaper'),async (req,res)=>{
 
            try{
             await studentPapers.save();
-            res.send("paper saved successfully")
+            const student_Papers = await StudentPapers.find({})
+
+            res.render('Ppapers/studentPapers',{
+                StudentPapers: student_Papers,
+                mode: 'final'
+            })
+                      
             console.log('paper saved successfully')
            }
            catch(err){
@@ -83,7 +93,11 @@ router.post('/upload_item',upload.single('pastPaper'),async (req,res)=>{
         studentPapers.papers = papersArray   ///update current papers array
         try{
             await studentPapers.save()
-            res.send('update was successful')
+            const student_Papers = await StudentPapers.find({})
+            res.render('Ppapers/studentPapers',{
+                StudentPapers: student_Papers,
+                mode: 'final'
+            })
             console.log(studentPapers)   
         }
         catch(err){
@@ -102,6 +116,9 @@ router.get('/:course',async (req,res)=>{
 
     if(searchQuery){
         const searchQueryEdit = searchQuery.toUpperCase().split(' ')[0]
+        const numberOfCourses = await StudentPapers.find({
+            course: searchQueryEdit
+        }).countDocuments() 
 
         const studentPapers = await StudentPapers.find({
             course:searchQueryEdit
@@ -109,6 +126,7 @@ router.get('/:course',async (req,res)=>{
         res.render('schools/downloadPage',{
             content:studentPapers
         })
+        console.log(numberOfCourses)
     }else{        
         const studentPapers =  await StudentPapers.find({
             course:CourseEdit
@@ -122,22 +140,52 @@ router.get('/:course',async (req,res)=>{
 })
 
 ////admin page
-router.get('//admin', async (req,res)=>{
+router.get('/admin/all', async (req,res)=>{
 
     const studentPapers =  await StudentPapers.find({})
     res.render('Ppapers/monitorPage',{
         papers:studentPapers
     })
 })
-
+///delete page
 router.post('/admin/delete', async (req,res)=>{
-    res.send(req.body.singlePaper)
+
+    const singlePaper = req.body.singlePaper
+    const id = req.body.id
+    const school = req.body.school
+    
+
+    // console.log(`public/uploads/cbu/${school}/${singlePaper}`)
+    // res.send(`public/uploads/cbu/${school}/${singlePaper}`)
+
+    const studentPapers = await StudentPapers.findById(`${id}`);
+    const papersArray = studentPapers.papers
+    const papersArrayEdit = papersArray.remove(singlePaper)
+    studentPapers.papers = papersArrayEdit
+
+    try{
+            await studentPapers.save()
+
+            fs.unlink(`public/uploads/cbu/${school}/${singlePaper}`, err=>{
+                if(err)
+                    console.log(`an error has occurred => ${err}`)
+                else
+                   console.log('file was deleted successfully')
+            })
+            console.log('paper was deleted successfully')
+            res.redirect('/admin/all')
+      
+    }
+    catch(err){
+        res.send('error deleting paper')
+        console.log(err)
+    }
+
+    // console.log(papersArrayEdit)
+
+    // res.send(papersArrayEdit)
 })
 
-// router.get('/search', async (req,res)=>{
-//     const searchQuery = req.query.course;
-//     const searchQueryEdit = searchQuery.toUpperCase()
 
-    
-// })
+
 module.exports = router

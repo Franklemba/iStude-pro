@@ -1,28 +1,10 @@
 
-
-
-///____This stores the school details in the localStorage
-fetch('/JSON/cbuZit.json').then(response=> response.json())
-   .then(data=>{
-    let data_serialized = JSON.stringify(data);
-        localStorage.setItem('CbuObject', data_serialized)
-        // console.log(data)
-   })
-   .catch(error=>{
-    console.log("Error on retrieving file");
-    console.error(error);
-    alert('error in accessing file, please reload site');
-   })
-
-
 /////////////Retrieve the stored data 
-const CbuObject = JSON.parse(localStorage.getItem("CbuObject"));
+const CbuObject = cbuProgrammes
 // console.log(CbuObject)
-
 
 ///////////////////////____this function is called once the large search icon is clicked____//////////////////////
 let viewSearchBar = () =>{
-
 
     //////////////////////////////////////////////////////
 
@@ -98,68 +80,9 @@ let viewSearchBar = () =>{
         
 }
 
-
-    
-
-
-
-   /////////////////////manipulates and examines the data inserted by the user in the input section///////
-
-    EnterSearch.addEventListener('click', ()=>{
-        let inputBox = document.getElementById('searchInput');
-
-   
-
-         ////////////________///////////////////
-         
-           let allCoursesArray = [];
-           let userData = inputBox.value.toLocaleUpperCase().trimStart();
-           let NewSchool;
-        /////////////________///////////////
-
-         ///////////////____////////////////
-
-         CbuObject.forEach(school=>{
-             school.programs.forEach(program=>{
-             
-                     program.COURSES.forEach(data=>{
-                         // YearArray.push(data.year);
-                         data.courses.forEach(data=>{
-                             allCoursesArray.push(`${data} ${program.programName}`)
-
-                             if(userData.includes(data)==true){   /// checks or the data inserted by the user matching any data in the ___allCoursesArray array
-                                NewSchool = school.school;
-                               allCoursesArray.push(`${data.toLocaleUpperCase()} ${program.programName.toLocaleUpperCase()}`)
-                                if(userData == `${data.toLocaleUpperCase()} ${program.programName.toLocaleUpperCase()}` || userData == data.toLocaleUpperCase().trimStart()){
-                                   DemoFimo.setDemo(data,program.programName,NewSchool);
-                                   return false;
-                               }
-                               console.log(school);        
-                               return false;
-                               }
-                         })
-     
-                         
-                     })
-                    
-             })
-         })
-         /////////////________//////////////
-    
-    
-   
-       })
-
-    // })
-
-   /////////////////////manipulates and examines the data inserted by the user in the input section///////
-
-
-
-
     /////////////////___this function displays out the suggestions___/////////////
 
-  let showSuggestions=(list)=>{
+    let showSuggestions=(list)=>{
         let listData;
         if(!list.length){
             userValue = inputBox.value;
@@ -171,6 +94,13 @@ let viewSearchBar = () =>{
     }
 
     ///////////////__this function displays out the suggestions___/////////////
+
+    EnterSearch.addEventListener('click', ()=>{
+        // alert("it's working")
+        document.getElementById('submitForm').submit()
+    })
+    
+
 
 }
 
