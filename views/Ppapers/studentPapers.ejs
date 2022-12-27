@@ -1,13 +1,9 @@
 
+<link rel="stylesheet" type="text/css" href="/css/style.css" >
+
 <div class="row">
-
-<% if (mode == 'final') { %>
-  <div class="demo">
-  </div>
-<% } %>
-
      
-   <form action="/upload_item" method="POST" enctype="multipart/form-data" id="uploadSubmit">
+   <form action="/admin/uploadPapers" method="POST" enctype="multipart/form-data" id="uploadSubmit">
 
       <h3>Upload Past paper</h3>
 
@@ -82,7 +78,7 @@
       <% element.papers.forEach(paper => { %>
 
              <%=element.program%>_<%=paper%>
-             
+
       <% }) %>
     <% }) %>
   </div>
@@ -91,10 +87,6 @@
   </div>
   <br><br>
 
-  <!-- <script class="papers">
-    
-  </script> -->
-   
 
  <script>
 
@@ -106,16 +98,6 @@
           newArray.push(paper.trim())
         }        
      })
-
-
-
-      
-      
-      let myWay = document.querySelector('.demo')
-
-      if(myWay){
-        alert('upload was successful')
-      }
 
       let schools = document.getElementById('school')
       let schoolsValue;

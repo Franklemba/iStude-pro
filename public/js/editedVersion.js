@@ -31,7 +31,7 @@ let DisplayCourses =(data,SchoolLabelName)=>{
                 }
             })
         })
-        console.log(allCoursesArray)
+        // console.log(allCoursesArray)
     /////////////________//////////////
 
      /////////////////////________///////////////////
@@ -59,7 +59,7 @@ let DisplayCourses =(data,SchoolLabelName)=>{
 
         allCoursesArray.forEach(data=>{
     
-            document.querySelector('.courseList').innerHTML += `<a href="/${data}"><li><h2>${data}</h2></li></a>`
+            document.querySelector('.courseList').innerHTML += `<a href="schools/${data}"><li><h2>${data}</h2></li></a>`
         })
 
           /////////////////////________///////////////////
@@ -74,7 +74,7 @@ let DisplayCourses =(data,SchoolLabelName)=>{
                     if(details == 'accordion courses'){
                         document.querySelector('.courseList').innerHTML  = ` `;
                         allCoursesArray.forEach(data=>{
-                            document.querySelector('.courseList').innerHTML += `<a href="/${data}"><li><h2>${data}</h2></li></a>`
+                            document.querySelector('.courseList').innerHTML += `<a href="schools/${data}"><li><h2>${data}</h2></li></a>`
                         })
                         document.querySelectorAll('.yearList li h1').forEach(data=>{
                             data.style= `
@@ -91,61 +91,62 @@ let DisplayCourses =(data,SchoolLabelName)=>{
          /////////////________//////////////
 }
 
-
 /////////____________________FOR THE SEARCH ICON WHEN CLICKED_______________________//////////
 
 
-var ClickedYear = (programName,year,SchoolLabelName)=>{
+//////////////_________this function is called once a year is clicked___________////////////////
 
-            ///////_________///////
+var ClickedYear = (programName,year)=>{
 
-    var ClickedYear = document.querySelectorAll('.yearList li h1');
-    const courseList = document.querySelector('.courseList');
-    const allCoursesArray = [];
-    const YearArray = [];
+    ///////_________///////
 
-                    ///////_________///////
+        var ClickedYear = document.querySelectorAll('.yearList li h1');
+        const courseList = document.querySelector('.courseList');
+        const allCoursesArray = [];
+        const YearArray = [];
 
-        ////////_________///////
-    ClickedYear.forEach(data=>{
-        data.style= `
-        box-shadow: 0;
-        `
-        if(data.textContent == year){
-            data.style = `
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 2.5);
+   ///////_________///////
+
+    ////////_________///////
+        ClickedYear.forEach(data=>{
+            data.style= `
+            box-shadow: 0;
             `
-        }
-    })
-      ///////_________///////
+            if(data.textContent == year){
+                data.style = `
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 2.5);
+                `
+            }
+        })
+    ///////_________///////
 
-                /////////////________//////////////
-                CbuObject.forEach(school=>{
-                    school.programs.forEach(program=>{
-                        if(program.programName == programName){
-                            programName = program.programName;
-                            program.COURSES.forEach(data=>{
-                                YearArray.push(data.year);
+    /////////////________//////////////
+        CbuObject.forEach(school=>{
+            school.programs.forEach(program=>{
+                if(program.programName == programName){
+                    programName = program.programName;
+                    program.COURSES.forEach(data=>{
+                        YearArray.push(data.year);
 
-                                if(data.year == year){
+                        if(data.year == year){
 
-                                    data.courses.forEach(data=>{
-                                        allCoursesArray.push(data)
-                                    })
-                                }
+                            data.courses.forEach(data=>{
+                                allCoursesArray.push(data)
                             })
                         }
                     })
-                })
-                /////////////________//////////////
+                }
+            })
+        })
+    /////////////________//////////////
 
-       ///////_________///////
-    courseList.innerHTML = ` `;  
+    ///////_________///////
+        courseList.innerHTML = ` `;  
 
 
-    allCoursesArray.forEach(data=>{
-        // courseList.innerHTML += `<li onclick="DemoFimo.setDemo('${data}','${programName}','${SchoolLabelName}')"><h2>${data}</h2></li>`
-        courseList.innerHTML += `<a href="/${data}"><li><h2>${data}</h2></li></a>`
-    })
-     ///////_________///////
+        allCoursesArray.forEach(data=>{
+            courseList.innerHTML += `<a href="schools/${data}"><li><h2>${data}</h2></li></a>`
+        })
+    ///////_________///////
 }
+//////////////_________this function is called once a year is clicked___________////////////////

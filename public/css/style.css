@@ -111,7 +111,7 @@ section{
     justify-content: center;
     align-items: center;
     border-radius: 3px;
-    opacity: 0;
+    opacity: 1;
 }
 .header .menuIcon span{
     width: 100%;

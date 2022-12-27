@@ -1,26 +1,17 @@
 
-////__This stores the University details in the localStorage
-fetch('./JSON/CBU.json').then(Response =>Response.json())
-.then(data=>{
-    let data_serialized = JSON.stringify(data);
-    localStorage.setItem('CBU',data_serialized)
-})
-.catch(error=>{
-    console.log("Error on retrieving CBU file");
-    console.log(error);
-})
-
-
     /////////////////////////////////////////
 
-  const CBU_data = JSON.parse(localStorage.getItem("CBU"));
+            const CBU_data = cbuProgrammes;
+            // console.log(CBU_data)
+ 
 
     ////////////////////////////////////////
 
 
-////_____________________________________for displaying the modal____________________________////
+////____________________________________for displaying the modal____________________________////
 ////html modal content
 const modalContent = `
+
 <div class="modal">
 
      <div class="ModalOverlay" onclick='searchBarClose()'></div>
@@ -38,7 +29,7 @@ const modalContent = `
      </div>
 
      <div class="wrapper">
-        <form action="/search" method="get"  id="submitForm" >
+        <form action="schools/search" method="get"  id="submitForm" >
         
                 <div class="search-input">
                 
@@ -64,7 +55,7 @@ const modalContent = `
             </div>
     
             <div class="img">
-                <a href="index.html" class="logo">
+                <a href="/" class="logo">
                 <img src="./media/iStude.png" alt="">
                 </a>
             </div>
@@ -87,17 +78,18 @@ const modalContent = `
 displayModal = function () {
 
        ////////////////////////////////////////////////////
-       let fish = document.querySelector('.navbar');
-        fish.style.visibility = "hidden";
+        let fish = document.querySelector('.navbar');
+            fish.style.visibility = "hidden";
 
-       let showContent = document.querySelector(".modal-bg");
-        /////////////////////////////////////////////////////
+        let showContent = document.querySelector(".modal-bg");
+      /////////////////////////////////////////////////////
 
       
     /////////////////////////////////////////////////////////////////////////////////////
    
-    showContent.innerHTML =  modalContent; 
-        /////////////////////////////////////////////////////////////////////////////////////
+         showContent.innerHTML =  modalContent; 
+
+    /////////////////////////////////////////////////////////////////////////////////////
 
         /////////////////////////////////////////////////////
     
@@ -106,13 +98,13 @@ displayModal = function () {
 
       CBU_data.forEach(data=>{
 
-          const DATA = data.School.split(' ').join('').slice(8);   ///trim the school name
+          const DATA = data.school.split('(')[1].split(')')[0]  ///trim the school name
           // console.log(DATA);
    
             Xul_accordion.innerHTML += `
                     <div class="contentBx">
 
-                        <div class="label" >${data.School}</div>
+                        <div class="label" >${data.school}</div>
                     
                         <div class="content" id="${DATA}">
                             <ul>
@@ -125,7 +117,7 @@ displayModal = function () {
                 `;
    
             data.programs.forEach(data=>{
-                document.querySelector(`#${DATA} ul`).innerHTML+= `<li>${data}</li>`  ///
+                document.querySelector(`#${DATA} ul`).innerHTML+= `<li>${data.programName}</li>`  ///
         
             })
        })
@@ -141,6 +133,7 @@ displayModal = function () {
         let modalInnerO = document.querySelectorAll(".accordion .contentBx .content");
         let modalInnerI = document.querySelectorAll(".accordion .contentBx.active .content");
         let SchoolLabel = document.querySelectorAll('.label');
+
         /////////////////////////////////////////////////////
 
 
@@ -162,7 +155,7 @@ displayModal = function () {
                 CoAttriDemo[i].style.color = "red";
             }
         })
-        /////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////
 
         /////////////////////////////////////////////////////
         

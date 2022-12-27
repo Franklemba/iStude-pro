@@ -1,7 +1,9 @@
 <link rel="stylesheet" type="text/css" href="/css/style.css" >
 
 <section>
-
+    <div style="background-color:white ; margin-top: 16%; height: fit-content; width: fit-content; padding: 5%;">
+          <h2><a href="/admin/uploadPapers">upload past paper</a></h2>
+    </div>
 <% papers.forEach(element => { %>
     <% if (element.papers.length > 0) { %>
         <div class="paperView" style="background-color:white ; margin-top: 6%; padding: 5%;">
@@ -18,7 +20,7 @@
                            <li><div class="fa fa-download" id="download-btn"></div></li>
                        </ul>
                    </a>
-                   <form action="/admin/delete" method="post">
+                   <form action="/admin" method="post">
                             <input type="hidden" name="id" value="<%= element._id%>">
                             <input type="hidden" name="school" value="<%= element.school%>">
                             <input type="hidden" name="singlePaper" value="<%= paper%>">
@@ -35,6 +37,6 @@
     
  
 <% }) %>
+
 </section>
 
-<script src="/js/script.js"></script>
