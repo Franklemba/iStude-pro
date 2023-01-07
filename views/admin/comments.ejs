@@ -1,0 +1,27 @@
+<link rel="stylesheet" type="text/css" href="/css/style.css" >
+
+<section>
+   
+  <a href="/admin">
+    <div style="background-color:rgb(219, 206, 206) ; margin-top: 16%; height: fit-content; width: fit-content; padding: 1% 5%;">
+        <h1><i><strong><%=name%></strong></i></h1>
+        <p>total of <%=number%> comments</p>
+    </div>
+  </a>
+
+<% comments.forEach(element => { %>
+      <div class="paperView" style="background-color:white ; margin-top: 6%; padding: 5%;">
+        <p><strong>Program:</strong><%=element.program%></p>
+         <p><strong>year:</strong> <%=element.yearOfStudy%></p>
+         <p><strong>Name:</strong> <%=element.name%> </p>
+         <h2><i>"<%=element.comment%>"</i></h2>
+         <form action="/admin/comments" method="post">
+            <input type="hidden" name="id" value="<%= element._id%>">
+            <input id="submit" type="submit" value="delete">
+       </form>
+      </div>
+<% }) %>
+
+
+</section>
+

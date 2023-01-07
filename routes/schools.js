@@ -14,7 +14,7 @@ router.get('/:course',async (req,res)=>{
     const searchQuery = req.query.course;
 
     if(searchQuery){
-        const searchQueryEdit = searchQuery.toUpperCase().split(' ')[0]
+        const searchQueryEdit = searchQuery.trim().toUpperCase().split(' ')[0]
         const studentPapers = await StudentPapers.find({
             course:searchQueryEdit
         })

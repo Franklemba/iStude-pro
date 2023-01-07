@@ -4,6 +4,9 @@ const multer = require('multer')
 const fs = require('fs')
 const path = require('path')
 const StudentPapers = require('../models/StudentUploadSchema') 
+const Comments = require('../models/commentSchema')
+
+
 
 const applicationMimeType = [    
     'application/pdf',
@@ -29,16 +32,53 @@ const upload = multer({storage: storage})
 router.get('/', async (req,res)=>{
 
     const studentPapers =  await StudentPapers.find({})
-    res.render('Ppapers/monitorPage',{
-        papers:studentPapers
-    })
+    if(req.user.username === 'istude'){
+        res.render('admin/monitorPage',{
+            papers:studentPapers,
+            name: req.user.username
+        })
+    }else{
+        res.render('admin/studentPapers',{
+            StudentPapers: studentPapers,
+            name: req.user.username
+        })
+    }
+    
+})
+/////comment page
+router.get('/comments', async (req,res)=>{
+    const comments = await Comments.find()
+    const commentsTotal = await Comments.find().countDocuments()
+    if(req.user.username === 'istude'){
+        res.render('admin/comments', {
+            comments:comments,
+            name: req.user.username,
+            number: commentsTotal
+        })
+    }else{
+        res.redirect('/admin')
+    }
+    
+})
+
+router.post('/comments', async (req,res)=>{
+    const id = req.body.id
+   
+    try{
+        await Comments.findByIdAndDelete(`${id}`)
+        res.redirect('/admin/comments')
+    }catch(err){
+        res.redirect('/admin')
+        console.log(err)
+    }
 })
 
 /////upload page
 router.get('/uploadPapers',async (req,res)=>{
     const studentPapers = await StudentPapers.find({})
-    res.render('Ppapers/studentPapers',{
+    res.render('admin/studentPapers',{
         StudentPapers: studentPapers,
+        name: req.user.username
     })
 })
 
@@ -82,16 +122,17 @@ router.post('/uploadPapers',upload.single('pastPaper'),async (req,res)=>{
     try{
         await studentPapers.save()
         const student_Papers = await StudentPapers.find({})
-        res.render('Ppapers/studentPapers',{
+        res.render('admin/studentPapers',{
             StudentPapers: student_Papers,
             message: `${paperName} uploaded successfully`,
-            url: "/admin/uploadPapers"
+            url: "/admin/uploadPapers",
+            name: req.user.username
         })
         console.log(studentPapers)   
     }
     catch(err){
         const student_Papers = await StudentPapers.find({})
-        res.render('Ppapers/studentPapers',{
+        res.render('admin/studentPapers',{
             StudentPapers: student_Papers,
             message: "upload wasn't successful",
             url: "/admin/uploadPapers"
@@ -130,7 +171,7 @@ router.post('/', async (req,res)=>{
     catch(err){
         
         const studentPapers =  await StudentPapers.find({})
-        res.render('Ppapers/monitorPage',{
+        res.render('admin/monitorPage',{
             papers: studentPapers,
             message: "error deleting paper",
             url: "/admin"
@@ -139,7 +180,5 @@ router.post('/', async (req,res)=>{
     }
 
 })
-
-
 
 module.exports = router

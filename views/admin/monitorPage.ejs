@@ -1,0 +1,89 @@
+<link rel="stylesheet" type="text/css" href="/css/style.css" >
+
+<section>
+    <div class="adminMenu" style="background-color:rgb(219, 206, 206) ; margin-top: 16%; height: fit-content; width: fit-content; padding: 1% 5%;">
+        <h1><i><strong><%=name%></strong></i></h1><br>
+        <p></p>
+  </div>
+    <div  style="background-color:white ; margin-top: 2%; height: fit-content; width: fit-content; padding: 5%;">
+          <h2><a href="/admin/uploadPapers">upload past paper</a></h2><br>
+          <h2><a href="/admin/comments">view comments</a></h2>
+    </div>
+<% papers.forEach(element => { %>
+    <% if (element.papers.length > 0) { %>
+        <div class="paperView" style="background-color:white ; margin-top: 6%; padding: 5%;">
+            <h2><%=element.school%></h2>
+            <p><%=element.program%></p>
+            <p><%=element.course%></p>
+            <p><%=element.yearOfStudy%></p>
+         <div>
+                <p><strong><%=element.assessmentType%></strong></p>
+                 <% element.papers.forEach(paper => { %>
+                   <div class="paperDelete">
+                        <a  href='/uploads/cbu/<%=element.school%>/<%=paper%>'>
+                            <ul>
+                                <li><i class="bi bi-file-earmark-pdf-fill"><%=paper%></i></li>
+                                <li><div class="fa fa-download" id="download-btn"></div></li>
+                            </ul>
+                        </a>
+                        <form action="/admin" method="post">
+                                <input type="hidden" name="id" value="<%= element._id%>">
+                                <input type="hidden" name="school" value="<%= element.school%>">
+                                <input type="hidden" name="singlePaper" value="<%= paper%>">
+                                <button id="submit" >delete</button>
+                        </form>
+                   </div>
+                 <% }) %>
+             </div>
+            <div>
+    
+            </div>
+    
+        </div>
+    <% } %>
+    
+ 
+<% }) %>
+
+<div id="papers" style="display: none;" >
+    <% papers.forEach(element => { %>
+      <% element.papers.forEach(paper => { %>
+
+             <%=element.program%>_<%=paper%>
+
+      <% }) %>
+    <% }) %>
+  </div>
+
+</section>
+
+<style>
+
+    .paperDelete{
+        display: flex;
+        width: 75vw;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .paperDelete a{
+        width: 60%;
+    }
+
+</style>
+
+
+<script>
+    const allPapers = document.getElementById('papers')
+      const papersArray = allPapers.innerText.trim().toString().split('\n')
+      const newArray = []
+      papersArray.forEach(paper=>{
+        if(paper.trim().length > 3){
+          newArray.push(paper.trim())
+        }        
+     })
+
+     const adminMenu = document.querySelector('.adminMenu p')
+     adminMenu.textContent = `total of ${newArray.length} past papers`
+
+    //  console.log(newArray.length)
+</script>

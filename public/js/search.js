@@ -97,7 +97,9 @@ let viewSearchBar = () =>{
 
     EnterSearch.addEventListener('click', ()=>{
         // alert("it's working")
-        document.getElementById('submitForm').submit()
+        if(inputBox.value.length >=  4 ){
+            document.getElementById('submitForm').submit()   
+        }
     })
     
 
