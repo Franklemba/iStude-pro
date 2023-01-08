@@ -7,7 +7,11 @@
   </div>
     <div  style="background-color:white ; margin-top: 2%; height: fit-content; width: fit-content; padding: 5%;">
           <h2><a href="/admin/uploadPapers">upload past paper</a></h2><br>
-          <h2><a href="/admin/comments">view comments</a></h2>
+          <h2><a href="/admin/comments">view comments</a></h2><br>
+          <h2><a href="/admin/users">view users</a></h2><br>
+          <form action="/logout?_method=DELETE" method="POST">
+            <button id="submit" type="submit">Log Out</button>
+          </form>
     </div>
 <% papers.forEach(element => { %>
     <% if (element.papers.length > 0) { %>
@@ -66,7 +70,7 @@
         align-items: center;
     }
     .paperDelete a{
-        width: 60%;
+        width: 80%;
     }
 
 </style>

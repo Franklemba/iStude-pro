@@ -5,6 +5,8 @@ const fs = require('fs')
 const path = require('path')
 const StudentPapers = require('../models/StudentUploadSchema') 
 const Comments = require('../models/commentSchema')
+const AdminUsers = require('../models/registerSchema')
+
 
 
 
@@ -73,6 +75,32 @@ router.post('/comments', async (req,res)=>{
     }
 })
 
+/////users page
+router.get('/users', async (req,res)=>{
+    const Users = await AdminUsers.find()
+    const usersTotal = await AdminUsers.find().countDocuments()
+    if(req.user.username === 'istude'){
+        res.render('admin/users',{
+            users: Users,
+            number: usersTotal,
+            name: req.user.username
+        })
+    }else{
+        res.redirect('/admin')
+    }
+    
+})
+///deleting user
+router.post('/users', async (req,res)=>{
+   const id = req.body.id
+   try{
+     await AdminUsers.findByIdAndDelete(`${id}`)
+     res.redirect('/admin/users')
+   }catch(err){
+      res.redirect('/admin')
+      console.log(err)
+   }
+})
 /////upload page
 router.get('/uploadPapers',async (req,res)=>{
     const studentPapers = await StudentPapers.find({})

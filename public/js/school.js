@@ -25,7 +25,7 @@ const modalContent = `
      </div>
 
      <div class="searchBar" onclick='viewSearchBar()'>
-             <i class='fa fa-search'>@</i>
+             <i class='fa fa-search'></i>
      </div>
 
      <div class="wrapper">
@@ -37,7 +37,7 @@ const modalContent = `
                             <div class="autocom-box">
                                 
                             </div>
-                            <div class="icon"><i class='fa fa-search'>@</i></div>
+                            <div class="icon"><i class='fa fa-search'></i></div>
                 </div>
         
         </form>

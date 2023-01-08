@@ -2,8 +2,8 @@
 <link rel="stylesheet" type="text/css" href="/css/style.css" >
 <script src="/js/CbuProgrammes.js"></script>
 
-
 <div class="row">
+  
   
    <form action="/admin/uploadPapers" method="POST" enctype="multipart/form-data" id="uploadSubmit">
     <a href="/admin">
@@ -11,6 +11,7 @@
         <h1><i><strong><%=name%></strong></i></h1>
       </div>
     </a>
+    
       <h3>Upload Past paper</h3>
 
      
@@ -90,6 +91,11 @@
   </div>
   
    
+  </div>
+  <div class="paperView" style="height: fit-content;">
+    <form action="/logout?_method=DELETE" method="POST">
+      <button  id="submit" type="submit">log out</button>
+    </form>  
   </div>
   <br><br>
 
