@@ -1,0 +1,91 @@
+.loaderBox{
+    position: fixed;
+    top: 10%;
+    width: 100%;
+    height: 100vh;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.7);
+     
+}
+.loaderBox svg{
+    position: fixed;
+    width: 150px;
+    height: 150px;
+}
+   
+.loaderBox .container{
+    position: fixed;
+    filter: url('#gooey');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loaderBox .liquid-1 {
+    position: relative;
+}
+.loaderBox span{
+background-color: black;
+height: auto;
+width: auto;
+}
+.loaderBox span .logo img{
+    height: 14rem;
+    width: 18rem;
+    opacity: 0;
+}
+.loaderBox .drop {
+    position: absolute;
+    background: rgb(160, 9, 160);
+    width: 18px;
+    height: 18px;
+    border-radius: 60% 70% 50% 60% / 65% 66% 60% 65%;
+    animation: 6s move ease infinite;
+}
+.loaderBox .drop:after {
+    width: 17px;
+    height: 17px;
+    content: '';
+    position: absolute;
+    background: var(--yellow);
+    border-radius: 50% 60% 60% 70% / 60% 65% 65% 65%;
+    left: 25px;
+    top: 3px;
+    animation: 6s drop_effect ease infinite;
+}
+
+@keyframes move {
+    0%, 100%{
+        transform: translate(90px);
+    }
+    50% {
+        transform: translate(-90px);
+    }
+}
+
+@keyframes drop_effect {
+    0%{
+        left: 0px;
+    }
+    5%{
+        left: 35px;
+    }
+    45%{
+        left: 0px;
+    }
+    50%{
+        left: 0px;
+    }
+    55%{
+        left: -30px;
+    }
+    95%{
+        left: 0px;
+    }
+    100%{
+        left: 0;
+    }
+}
+

@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require('express')
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
@@ -37,8 +38,6 @@ async function fetchUser(){
      username => users.find(user => user.username === username),
      id => users.find(user => user.id === id)
     )
-    // console.log(Admin_users)
-    // console.log(users)
 }
 
 let users = []
@@ -46,9 +45,8 @@ let users = []
 
 //////////////database connection////////////
 
-///mongodb+srv://franklemba:kU3XmafGzdHYYzfX@cluster0.xnljw5s.mongodb.net/?retryWrites=true&w=majority
- //mongodb://localhost:27017/iStude_Pro
-   mongoose.connect('mongodb+srv://franklemba:kU3XmafGzdHYYzfX@cluster0.xnljw5s.mongodb.net/?retryWrites=true&w=majority').then(()=>{
+
+   mongoose.connect(process.env.DATABASE_Url || process.env.database_Url).then(()=>{
     console.log('database is connected')
    }).catch((err)=> console.log('error connecting to database ',err))
  
@@ -66,7 +64,7 @@ let users = []
   app.use(express.urlencoded({ extended: false }))
   app.use(flash())
   app.use(session({
-    secret: 'secret',
+    secret: process.env.flash_secret,
     resave: false,
     saveUninitialized: false
   }))
@@ -156,4 +154,4 @@ function checkNotAuthenticated(req, res, next){
 
 
 
-app.listen(process.env.PORT || 3007)
+app.listen(process.env.PORT || 3007,()=> console.log('Server is Running'))

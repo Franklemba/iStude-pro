@@ -65,7 +65,7 @@ const modalContent = `
             </div>
 
             <div class="down_indexs">
-                <h5>Proudly sponsored by FDTM</h5>
+                <h5>Proudly sponsored by ODTM</h5>
             </div>
 
      </div>

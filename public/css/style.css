@@ -1,6 +1,10 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"); */
 @import url('https://fonts.googleapis.com/css?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import 'shared/modal.css';
+@import 'shared/layout.css';
+@import 'shared/loaderbox.css';
+
 :root{
     --main-color:#d3ad7f;
     --black:#13131a;
@@ -43,182 +47,7 @@ body{
 section{
     padding: 2rem 7%;
 }
-.heading{
-    text-align: center;
-    color: #fff;
-    text-transform: uppercase;
-    /* padding-bottom: 3.5rem; */
-    padding: 5%;
-    font-size: 4rem;
-}
 
-.heading span{
-    color: var(--main-color);
-    text-transform: uppercase;
-}
-
-.btn{
-    margin-top: 1rem;
-    display: inline-block;
-    padding: 2px 5px;
-    font-size: 1.7rem;
-    color: #fff;
-    background: var(--main-color);
-    cursor: pointer;
-    height: fit-content;
-    width: fit-content;
-}
-.btn:hover{
-    letter-spacing: .2rem;
-}
-.header{
-    background:var(--bg);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.5rem 7%;
-    border-bottom: var(--border);
-    position: fixed;
-    top: 0;left: 0; right: 0;
-    z-index: 1000;
-   
-}
-.header .logo img{
-    height: 4rem;
-    opacity: 1;
-}
-.header .navbar a{
-    margin: 0 1rem;
-    font-size: 1.6rem;
-    color: #fff;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-.header .navbar a:hover{
-    color: var(--main-color);
-    border-bottom: .1rem solid var(--main-color);
-    padding-bottom: .5rem;
-}
-.header .menuIcon{
-    position: fixed;
-    right: 10px;
-    top: 20px;
-    display: none;
-    flex-direction: column;
-    width: 40px;
-    height: fit-content;
-    padding: 3px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 3px;
-    opacity: 1;
-}
-.header .menuIcon span{
-    width: 100%;
-    height: 5px;
-    margin: 2.2px;
-    border-radius: 2px;
-    background-color: var(--main-color);
-    transition: .5s;
-}
-.header .menuIcon.active span{
-    position: absolute;
-    width: calc(100% - 16px);
-    top: calc(50% - -3px);
-}
-.header .menuIcon.active span:nth-child(1){
-    transform: rotate(45deg);
-}
-.header .menuIcon.active span:nth-child(3){
-    transform: rotate(-45deg);
-}
-.header .menuIcon.active span:nth-child(2){
-    display: none;
-}
-.header .search-form{
-    position: absolute;
-    top: 115%; right: 7%;
-    background: #fff;
-    width: 50rem;
-    height: 5rem;
-    display: none;
-    align-items: center;
-    transform: scaleY(0);
-    transform-origin: top;
-}
-.header .search-form.active{
-    transform: scaleY(1);
-}
-.header .search-form input{
-    height: 100%;
-    width: 100%;
-    font-size: 1.6rem;
-    color: var(--black);
-    padding: 1rem;
-    text-transform: none;
-    border: none;
-}
-.header .search-form label{
-    cursor: pointer;
-    font-size: 2.2rem;
-    margin-right: 1.5rem;
-    color: var(--black);
-}
-.header .search-form label:hover{
-    color: var(--main-color);
-}
-.header .cart-items-container{
-    position: absolute;
-    top: 100%; right: -100%;
-    height: calc(100vh - 9.5rem);
-    width: 35rem;
-    background: #fff;
-    padding: 0 1.5rem;
-}
-.header .cart-items-container.active{
-    right: 0;
-}
-
-.header .cart-items-container .cart-item{
-    position: relative;
-    margin: 2rem 0;
-    display: block;
-    align-items: center;
-    gap: 1.5rem;
-}
-.header .cart-items-container .cart-item .fa-times{
-    position: absolute;
-    top: 1rem; right: 1rem;
-    font-size: 2rem;
-    cursor: pointer;
-    color: var(--black);
-}
-.header .cart-items-container .cart-item .fa-times:hover{
-    color: var(--main-color);
-}
-.header .cart-items-container .cart-item img{
-    height: 5rem;
-}
-.header .cart-items-container .cart-item .content h3{
-    font-size: 2rem;
-    color: var(--black);
-    padding-bottom: .5rem;
-}
-
-.header .cart-items-container .cart-item .content .price{
-    font-size: 2rem;
-    color: var(--black);
-    padding-bottom: .5rem;
-}
-.header .cart-items-container .btn{
-    width: 100%;
-    text-align: center;
-}
-/* .contact p{
-    color: #fff;
-    justify-content: center;
-    margin: 1% 30%;
-} */
 .schoolz{
    margin-top: 50px;
    display: flex;
@@ -234,6 +63,11 @@ section{
 }
 .schoolz .advertiser .content{
     padding: 5px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-items: center;
+    align-items: center;
 }
 .schoolz .advertiser .content h1{
     text-align: center;
@@ -243,40 +77,36 @@ section{
 }
 .schoolz .advertiser .content p{
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: lighter;
-    line-height: 1.8;
+    line-height: 1;
     color: #eee;
     text-transform: none;
 }
 .schoolz .Zed_SeXulz{
-    width: 70vw;
+
+    margin: 5%;
+    width: 50vw;
+    border-radius: 6px;
     padding: 12px;
-}
-.schoolz .Zed_SeXulz ul{
-    width: 100%;
-    padding: 5px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-.schoolz .Zed_SeXulz ul li{
-    border: 0.2px solid var(--bg);
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: wrap;
-    list-style: none;
-    color: #fff;
-    font-size: 150%;
-    font-style:italic var(--main-color);
+    text-align: center;
+    background-color:var(--main-color); 
     cursor: pointer;
-    width: 50%;
-    height: 150px;
-    background-color: var(--black);
 }
-.schoolz .Zed_SeXulz ul li:hover{
-    background-color: var(--main-color);
+.schoolz .Zed_SeXulz:hover{
+    opacity: 0.85;
+}
+.schoolz .Zed_SeXulz h3{
+    font-size: 1.8rem;
+    text-transform: uppercase;
+}
+.schoolz .Zed_SeXulz .imgUni a img{
+    height: 5rem;
+}
+.schoolz .Zed_SeXulz .imgUni a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .overLay {
@@ -401,100 +231,6 @@ section{
     background: none;
 }  
 
-.footer{
-    background: var(--black);
-    text-align: center;
-    opacity: 1;
-}
-.footer .share{
-    padding: 1rem 0;
-}
-.footer .share a{ 
-    height: 5rem;
-    width: 5rem;
-    line-height: 5rem;
-    font-size: 2rem;
-    color: #fff;
-    border: var(--border);
-    margin: .3rem;
-    border-radius: 50%;
-}
-.footer .share a:hover{
-    background-color: var(--main-color);
-}
-.footer .links{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 2rem 0;
-    gap: 1rem;
-}
-.footer .links a{
-    padding: .7rem 2rem;
-    color:#fff;
-    border: var(--border);
-    font-size: 2rem;
-}
-.footer .links a:hover{
-  background-color: var(--main-color);
-}
-.footer .credit {
-    font-size: 2rem;
-    color: #fff;
-    font-weight: lighter;
-    padding: 1.5rem;
-}
-.footer .credit span{
-    color: var(--main-color);
-}
-
-.footerNav{
-    margin-top: 50px;
-    background: var(--black);
-    text-align: center;
-    opacity: 1;
-}
-.footerNav .share{
-    padding: 1rem 0;
-}
-.footerNav .share a{ 
-    height: 5rem;
-    width: 5rem;
-    line-height: 5rem;
-    font-size: 2rem;
-    color: #fff;
-    border: var(--border);
-    margin: .3rem;
-    border-radius: 50%;
-}
-.footerNav .share a:hover{
-    background-color: var(--main-color);
-}
-.footerNav .links{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 2rem 0;
-    gap: 1rem;
-}
-.footerNav .links a{
-    padding: .7rem 2rem;
-    color:#fff;
-    border: var(--border);
-    font-size: 2rem;
-}
-.footerNav .links a:hover{
-  background-color: var(--main-color);
-}
-.footerNav .credit {
-    font-size: 2rem;
-    color: #fff;
-    font-weight: lighter;
-    padding: 1.5rem;
-}
-.footerNav .credit span{
-    color: var(--main-color);
-}
 
 /* //////////////iStude pro newly inserted code///////////// */
 .row {
@@ -508,15 +244,22 @@ section{
     padding: 10px;
 }
 .row .inputbox select{
-    font-size: 140%;
-    max-width: 70vw;
+    font-size: 150%;
+    width: fit-content;
 }
 .row .inputbox option{
-    font-size: 80%;
+    font-size: 150%;
     max-width: 60vw;
+    padding: 2%;
 }
 .row .inputbox input{
-    font-size: 140%;
+    font-size: 150%;
+}
+ #filterCourses{
+    width: 70vw;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
 }
 
 #submit{
@@ -534,341 +277,6 @@ section{
 }
 
 /* //////////////iStude pro newly inserted code///////////// */
-
-
-
-                                             /* styling for the Modal itself*/
-
-
-
- /*____for the modal, the main display___*/
-
-
- .programmes .modal-bg{
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    background-color: rgba(0,0,0,0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    visibility: hidden;
-    transition: visibility 0s,opacity 0.5s;
-  }
-  .programmes .modal .down_index {
-      bottom: 5px;
-  }
-  .programmes .modal .down_indexs h5{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .programmes .modal .down_indexb h3{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .programmes .modal .img a {
-    margin-top: 5%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .programmes .modal .img a img {
-      height: 4rem;
-  }
-  .programmes .modal .imgUni a img{
-      height: 5rem;
-  }
-  .programmes .modal .imgUni a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-.programmes .modal{
-    position: absolute;
-    box-shadow: 0px 1px 7px;
-    margin-top: 5%;
-    font-family: 'Montserrat',sans-serif;
-    background-color: rgb(206, 199, 199);
-    width: 55%;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    opacity: 1;
-    border-radius: 10px;
-    z-index: 1000;
-  }
-.programmes .modalInner{
-  height: 78%;
-    overflow-y: auto;
-    background-color: rgb(191, 184, 184);
-    align-items: center;
-    margin: 1% 2%;
-
-  }
-.programmes .modal-close{
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    font-weight: bold;
-    font-size: 25px;
-    cursor: pointer;
-    display: block;
-    justify-content: center;
-  }
-.programmes .modal-close:hover{
-    color: red;
-  }
-.programmes .searchBar{
-    position: absolute;
-    top: 30px;
-    left: 55px;
-    font-weight: bold;
-    font-size: 45px;
-    cursor: pointer;
-    display: block;
-    justify-content: center;
-    color: rgb(87, 13, 13);
-    z-index: 20;
-}
-.programmes .searchBar:hover{
-    font-size: 50px;
-    color: rgb(87, 33, 33);
-}
-.programmes .modal .UniTitle{
-    margin: 10px auto;
-    padding-top: 10px;
-  }
-.programmes .modal .UniTitle h3{
-    font-size: 29px;
-  }
-
-   /* for the search content in the modal */
-
-.programmes .ModalOverlay{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-    display: none;
-    scroll-behavior: unset;
-    background-color: var(--blur);
-}
-.programmes .ModalOverlay.active{
-    display: flex;
-}
-   .wrapper{
-    position: absolute;
-    display: none;
-    top: 65px;
-    /* left: auto; */
-    align-self: center;
-    max-width: 450px;
-    z-index: 20;
-}
-.wrapper .search-input{
-    position: relative;
-    background: #fff;
-    width: 100%;
-    border-radius: 5px;
-    box-shadow: 0px 1px 5px 3px rgba(0,0,0,0.1);
-}
-#searchInput{
-    height: 55px;
-    width: 100%;
-    outline: none;
-    border-radius: 5px;
-    padding: 0 60px 0 25px;
-    font-size: 18px;
-}
-.search-input .icon i{
-    height: 55px;
-    width: 55px;
-    line-height: 55px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    text-align: center;
-    font-size: 30px;
-    color: #131029;
-    cursor: pointer;
-}
-.search-input .icon i:hover{
-   font-size: 35px;
-}
-.search-input .searchBar-close{
-    height: 55px;
-    width: 55px;
-    line-height: 55px;
-    position: absolute;
-    top: 0;
-    left: -16;
-    text-align: center;
-    font-size: 30px;
-    color: rgb(130, 20, 20);
-    cursor: pointer;
-}
-.search-input .autocom-box{
-    padding: 0;
-    max-height: 280px;
-    overflow-y: auto;
-    opacity: 0;
-    pointer-events: none;
-}
-.search-input.active .autocom-box{
-    padding: 10px 8px;
-    opacity: 1;
-    pointer-events: auto;
-}
-.autocom-box li{
-    list-style: none;
-    padding: 8px 12px;
-    width: 100%;
-    cursor: default;
-    border-radius: 3px;
-    display: none;
-    font-size: 18px;
-}
-.search-input.active .autocom-box li{
-    display: block;
-}
-.autocom-box li:hover{
-     background: #efefef;
-}
-
-                              /*___for the accordion___*/                              
-
-.programmes .accordion .contentBx{
-    position: relative;
-    margin: 3px 20px;
-}
-.programmes .accordion .contentBx .label{
-   position: relative;
-   padding: 10px;
-   background: #203c43;
-   color: #fff;
-   cursor: pointer;
-   font-size: 150%;
-   font-weight: 400;
-   text-transform: capitalize;
-}
-.programmes .accordion .contentBx .label:hover{
-    background: #045063;
-}
-.programmes .accordion .contentBx .label::before{
-    content: '+';
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-    font-size: 1.5em;
-    color: crimson;
-}
-.programmes .accordion .contentBx .content{
-    position: relative;
-    height: 0px;
-    overflow: hidden;
-    transition: 0.5s;
-}
-.programmes .accordion .contentBx.active .content{
-   height: fit-content;
-   padding: 10px;
-   overflow-y: auto;
-   transition: 0.5s;
-}
-.programmes .accordion .contentBx.active .label::before{
-    content: '-';
-}
-.programmes .accordion .contentBx .content ul li{
-    line-height: 30px;
-    background-color: rgb(128, 117, 102);
-
-    margin: 2px  50px;
-    text-align: center;
-    box-shadow: 2px 2px 8px;
-    border-radius: 5px;
-    font-family: 'Times New Roman', Times, serif;
-    list-style: none;
-    text-transform: capitalize;
-    font-weight: 40px;
-    font-size: 18px;
-    cursor: pointer;
-}
-.programmes .accordion .contentBx .content ul li:hover{
-  text-decoration: underline;
-  opacity: 0.7;
-}
-
-
-
-/* for the course codes eg CS120, CS340 etc.. */
-.programmes .fish h3{
-  color: rgb(226, 116, 37);
-  text-decoration: none;
-  margin: 2% 10%;
-  font-size: 170%;
-  text-align: right;
-  font-weight: 700;
-}
-
-
-  
-/*for the course attributes eg Assignments,test 1, sessional etc*/
-  .programmes .CourseAttrib{
-    background-color: #203c43;
-    height: fit-content;
-    padding: 0px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-.programmes  .CourseAttrib p{
-    justify-content: center;
-    list-style: none;
-    cursor: pointer;
-    padding: 0px 5px;
-  color: #fff;
-  display: inline-flex;
-  align-items: center;
-    justify-content: center;
-  font-style: italic;
-  font-family: sans-serif;
-  font-size: 150%;
-  line-height: 10px;
-  margin: 1% 1%;
-  height: 30px;
-  width: fit-content;
-  transition: 0.3s ease;
-  border-radius: 5px;
-  } 
-  .programmes  .CourseAttrib p:hover{
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 2.5);
-  } 
-
- /*For the back button*/ 
- .programmes span.back_button{
-    position: absolute;
-    top: 7px;
-    left: 8px;
-    font-weight: initial;
-    font-size: 14px;
-    cursor: pointer;
-    display: block;
-    justify-content: center;
-  }
-.programmes  span.back_button a{
-    text-decoration: none;
-    color: rgb(140, 6, 33);
-    font-style: italic;
-    font-size: 15px;
-  }
-.programmes  span.back_button a:hover{
-    color: rgb(66, 64, 64);
-  }
 
 /*for the papers the pdf's*/
 
@@ -928,99 +336,6 @@ section{
   }
 
                            /*media queries*/
-
-
-.loaderBox{
-    position: fixed;
-    top: 10%;
-    width: 100%;
-    height: 100vh;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0,0,0,0.7);
-     
-}
-.loaderBox svg{
-    position: fixed;
-    width: 150px;
-    height: 150px;
-}
-   
-.loaderBox .container{
-    position: fixed;
-    filter: url('#gooey');
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.loaderBox .liquid-1 {
-    position: relative;
-}
-.loaderBox span{
-background-color: black;
-height: auto;
-width: auto;
-}
-.loaderBox span .logo img{
-    height: 14rem;
-    width: 18rem;
-    opacity: 0;
-}
-.loaderBox .drop {
-    position: absolute;
-    background: rgb(160, 9, 160);
-    width: 18px;
-    height: 18px;
-    border-radius: 60% 70% 50% 60% / 65% 66% 60% 65%;
-    animation: 6s move ease infinite;
-}
-.loaderBox .drop:after {
-    width: 17px;
-    height: 17px;
-    content: '';
-    position: absolute;
-    background: var(--yellow);
-    border-radius: 50% 60% 60% 70% / 60% 65% 65% 65%;
-    left: 25px;
-    top: 3px;
-    animation: 6s drop_effect ease infinite;
-}
-
-@keyframes move {
-    0%, 100%{
-        transform: translate(90px);
-    }
-    50% {
-        transform: translate(-90px);
-    }
-}
-
-@keyframes drop_effect {
-    0%{
-        left: 0px;
-    }
-    5%{
-        left: 35px;
-    }
-    45%{
-        left: 0px;
-    }
-    50%{
-        left: 0px;
-    }
-    55%{
-        left: -30px;
-    }
-    95%{
-        left: 0px;
-    }
-    100%{
-        left: 0;
-    }
-}
-
 
 /* NEWLY inserted styling */
 
@@ -1119,22 +434,20 @@ width: auto;
         width: 100%;
     }
 
-    .schoolz .Zed_SeXulz{
-        bottom: 10%;
-        width: 100%;
-    }
-    .schoolz .Zed_SeXulz ul{
-        width: 100%;
-        padding: 0px;
-    }
-    .schoolz .Zed_SeXulz ul li{
-        height: 100px;
-    }
+    
 }
 
 @media (max-width:780px){
     .header .menuIcon{
         display: flex;
+    }
+    .schoolz .Zed_SeXulz{
+
+        margin: 15%;
+        width: fit-content;
+        padding: 12px;
+        text-align: center;
+        background-color:var(--main-color); 
     }
     .footerNav{
         display: block;
@@ -1156,8 +469,8 @@ width: auto;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 3rem;
-        padding: .5rem;
+        margin-top: .3rem;
+        padding: 10%;
         font-size: 2rem;
     }
     .header .search-form{

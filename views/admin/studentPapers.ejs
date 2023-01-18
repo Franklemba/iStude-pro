@@ -4,79 +4,75 @@
 
 <div class="row">
   
-  
    <form action="/admin/uploadPapers" method="POST" enctype="multipart/form-data" id="uploadSubmit">
     <a href="/admin">
       <div style="background-color:rgb(219, 206, 206) ; height: fit-content; width: fit-content; padding: 1% 5%;">
-        <h1><i><strong><%=name%></strong></i></h1>
+        <h1 id="userName"><i><strong><%=name%></strong></i></h1>
       </div>
     </a>
     
       <h3>Upload Past paper</h3>
-
-     
-       <div class="inputbox" >
-        <h2>Select School:</h2>
-          <select name="school" id="school">
-            
-          </select>
-       </div>
-
+ 
+      <div class="paperContent">
   
-       
-       <div class="inputbox"  >
-        
-        <h2>Select Program:</h2>
-        <select name="program" id="program">
-
-        </select>
-       </div>
-
-      
-
-       <div class="inputbox" >
-        
-        <h2>Select year of study:</h2>
-        <select name="yearOfStudy" id="yearOfStudy">
-
-        </select>
-       </div>
-
-       <div class="inputbox" >
-        
-        <h2>Select course:</h2>
-        <select name="course" id="course">
-
-        </select>
-       </div>
-
-
-       <div class="inputbox" >
-        <h2>Select assessmentType: </h2>
+         <input type="hidden" value="" name="school" id="schoolName">
+         
+         <div class="inputbox"  >
+          
+          <h2>Select Program:</h2>
+          <select name="program" id="program">
   
-        
-        <select name="assessmentType" id="assessmentType" >
-            <option label="sessional" value="sessional"></option>
-              <option label="assignment" value="assignment"></option>
-              <option label="quiz" value="quiz"></option>
-              <option label="test 1" value="test 1"></option>
-              <option label="test 2" value="test 2"></option>
           </select>
-
-       </div>
-       
+         </div>
+  
+         <div class="inputbox" id="filterCourses" >
+          
+          <div >
+                <h2>filter:</h2>
+              <select name="yearOfStudy" id="yearOfStudy">
       
-       <div class="inputbox" >
-
-        <h2>enter year of past paper:</h2>
-
-        <input type="number" min="1990" max="2024" id="year" name="year" placeholder="year" required />
-      </div><br>
-            
-      <div class="inputbox">
-       <input id="pastPaper" type="file" name="pastPaper" required>
-     </div> <br>
+              </select>
+          </div>
+          <div>
+                <h2>Select course:</h2>
+              <select name="course" id="course">
+                
+              </select>
+          </div>
+         </div>
+  
+  
+         <div class="inputbox" >
+          <h2>Select assessmentType: </h2>
     
+          
+          <select name="assessmentType" id="assessmentType" >
+              <option label="sessional" value="sessional"></option>
+                <option label="assignment" value="assignment"></option>
+                <option label="deferred exam" value="deferred exam"></option>
+                <option label="quiz" value="quiz"></option>
+                <option label="test 1" value="test 1"></option>
+                <option label="test 2" value="test 2"></option>
+                <option label="test 3" value="test 3"></option>
+            </select>
+  
+         </div>
+         
+        
+         <div class="inputbox" >
+  
+          <h2>enter year of past paper:</h2>
+  
+          <input type="number" id="year" name="year" placeholder="year" required />
+        </div><br>
+              
+        <div class="inputbox">
+         <input id="pastPaper" type="file" name="pastPaper" required>
+       </div> <br>
+         
+
+      </div>
+
       <span id="submit">submit</span>
   </form>
 
@@ -111,9 +107,6 @@
         }        
      })
 
-    //  console.log(newArray)
-
-      let schools = document.getElementById('school')
       let schoolsValue;
       let program = document.getElementById('program')
       let programValue;
@@ -122,92 +115,115 @@
       let course = document.getElementById('course')
       let courseValue;
       let assessmentType = document.getElementById('assessmentType')
+      let paperContent = document.querySelector('.paperContent')
       let year = document.getElementById('year')
       const application = document.getElementById('pastPaper')
       const submit = document.getElementById('submit')
       const uploadSubmit = document.getElementById('uploadSubmit')
+      const userName = document.getElementById('userName').textContent
+      const today = new Date();
+      const yyyy = today.getFullYear();
       const applicationMimeType = [    
                                     "application/pdf",
                                     "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                                     "application/vnd.openxmlformats-officedocument.presentationml.presentation"
                                   ]
-
-
+        
+                                
      fetch('/JSON/cbuZit.json')
      .then(response=> response.json())
      .then(function(data){
 
        ////////////////////////////school selection/////////////////////////////////////         
-        // const schoolArray = []
         const InitialProgramArray = []
-        data.forEach(element => {
-              schools.innerHTML += `<option label="${element.school}" value="${element.school}"></option>`   
-          });
+        const programArray = []
 
-
-
-          schools.addEventListener('click',(e)=>{
-
-                const programArray = []
-
-                  data.forEach(element=>{
-                    element.programs.forEach(program=>{
-                      // console.log(program)
-                      if(element.school == e.target.value){
+        data.forEach(element=>{
+          element.programs.forEach(program=>{
+                      if(element.school.split('(')[1].split(')')[0] == userName){
                         programArray.push(`<option label="${program.programName}" value="${program.programName}"></option>`)
-                        // programArray.
+                      }else if(userName.length == 6){
+                        programArray.push(`<option label="${program.programName}" value="${program.programName}"></option>`)
                       }
                     })
                       
                   })
+   
                   program.innerHTML = programArray   ////when there is a selection
-                  schoolsValue = e.target.value
-                  console.log(schoolsValue.split('(')[1].split(')')[0])
+                            
+////////////////////program selection starts here////////////////////////
 
-          })
-          
-////////////////////program selection////////////////////////
-
-
-
-/////////////////////////////
-
-          program.addEventListener('click',(e)=>{
-            const yearOfStudyArray = []
-           
-
-            data.forEach(element=>{
+      ///////////////////Non eventListener////////////////////////
+      const programContent = program.value
+      const yearOfStudyArray = []
+      const coursesArray = []
+      const yearOfStudyContent = yearOfStudy.value
+        data.forEach(element=>{
               element.programs.forEach(program=>{
                 
                 program.COURSES.forEach(content=>{
-                  if(e.target.value == program.programName){
+                  if(program.programName == programContent){
+                    schoolsValue = element.school
                     yearOfStudyArray.push(`<option label="${content.year}" value="${content.year}"></option>`)
+                    content.courses.forEach(Courses=>{
+                            coursesArray.push(`<option label="${Courses}" value="${Courses}"></option>`)
+                          })
                   }
                 })
               })
                 
             })
-            yearOfStudy.innerHTML = yearOfStudyArray   ////when there is a selection
-            programValue = e.target.value
-          })
 
-////////////////////yearOfStudy selection////////////////////////
+            yearOfStudy.innerHTML = yearOfStudyArray  
+            course.innerHTML = coursesArray
+ 
+      ///////////////////eventListener////////////////////////
+
+            program.addEventListener('click',(e)=>{
+
+                const yearOfStudyArray = []
+                const coursesArray = []
+                const yearOfStudyContent = yearOfStudy.value
+                  data.forEach(element=>{
+                    element.programs.forEach(program=>{
+                      
+                      program.COURSES.forEach(content=>{
+                        if(e.target.value == program.programName){
+                          schoolsValue = element.school
+                          yearOfStudyArray.push(`<option label="${content.year}" value="${content.year}"></option>`)
+                            content.courses.forEach(Courses=>{
+                            coursesArray.push(`<option label="${Courses}" value="${Courses}"></option>`)
+                          })
+                        }
+                      })
+                    })
+                      
+                  })
+                  yearOfStudy.innerHTML = yearOfStudyArray   ////when there is a selection
+                  course.innerHTML = coursesArray
+                  programValue = e.target.value
+            })
+
+////////////////////program selection ends here////////////////////////
+
+////////////////////yearOfStudy selection begins here ////////////////////////
           
-      yearOfStudy.addEventListener('click',(e)=>{
+     yearOfStudy.addEventListener('click',(e)=>{    //this is meant to filter the courses according to the yearOfStudy
         const coursesArray = []
-           
-
+        const programContent = program.value 
             data.forEach(element=>{
               element.programs.forEach(program=>{
-                
-                program.COURSES.forEach(content=>{
-                  
-                  content.courses.forEach(Courses=>{
-                    if(e.target.value == content.year && program.programName == programValue){
-                    coursesArray.push(`<option label="${Courses}" value="${Courses}"></option>`)
+                  if(program.programName == programContent){
+                    program.COURSES.forEach(content=>{
+                            content.courses.forEach(Courses=>{
+                              if(e.target.value == content.year ){
+                                coursesArray.push(`<option label="${Courses}" value="${Courses}"></option>`)
+                              }
+                            })
+                          
+                    })
                   }
-                  })
-                })
+
               })
                 
             })
@@ -216,20 +232,21 @@
 
       })     
 
+    })
 
-          
-     })
+////////////////////yearOfStudy selection ends here////////////////////////
 
-     
-     var uploadPapers = application.files
-     submit.addEventListener('click',()=>{
-        //  console.log(application.files)
+
+    var uploadPapers = application.files
+     submit.addEventListener('click',()=>{  ////this function examines the the paper before it's submitted
+         document.getElementById('schoolName').value = schoolsValue
          const collectedInfo = `${program.value}_${course.value} ${assessmentType.value} ${year.value}.pdf`;
          if(newArray.includes(collectedInfo) == true){
              alert("This paper already exists")
          }else if(program.value.length == 0 || course.value.length == 0 || assessmentType.value.length == 0 || year.value.length == 0){
              alert("please make sure to select all fields")
-             console.log(application.files[0].type,application.files[0].size)
+         }else if(year.value < 2010 || year.value > yyyy){
+             alert(`only past papers between 2010 and ${yyyy} `)
          }else{
             if(applicationMimeType.includes(application.files[0].type) == true && application.files[0].size <= 5000000){
               uploadSubmit.submit();
@@ -237,13 +254,8 @@
               alert("error uploading file, either the file format is invalid or file size is larger than recommended")
             }
          }
-        
-
-         
-         
      })
 
 </script> 
 
 
-  

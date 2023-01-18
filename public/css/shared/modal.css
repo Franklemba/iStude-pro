@@ -1,0 +1,360 @@
+
+ .programmes .modal-bg{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    transition: visibility 0s,opacity 0.5s;
+  }
+  .programmes .modal .down_index {
+      bottom: 5px;
+  }
+  .programmes .modal .down_indexs h5{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .programmes .modal .down_indexb h3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .programmes .modal .img a {
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .programmes .modal .img a img {
+      height: 4rem;
+  }
+  .programmes .modal .imgUni a img{
+      height: 5rem;
+  }
+  .programmes .modal .imgUni a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.programmes .modal{
+    position: absolute;
+    box-shadow: 0px 1px 7px;
+    margin-top: 5%;
+    font-family: 'Montserrat',sans-serif;
+    background-color: rgb(206, 199, 199);
+    width: 55%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    border-radius: 10px;
+    z-index: 1000;
+  }
+.programmes .modalInner{
+  height: 78%;
+    overflow-y: auto;
+    background-color: rgb(191, 184, 184);
+    align-items: center;
+    margin: 1% 2%;
+
+  }
+.programmes .modal-close{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-weight: bold;
+    font-size: 25px;
+    cursor: pointer;
+    display: block;
+    justify-content: center;
+  }
+.programmes .modal-close:hover{
+    color: red;
+  }
+.programmes .searchBar{
+    position: absolute;
+    top: 30px;
+    left: 55px;
+    font-weight: bold;
+    font-size: 45px;
+    cursor: pointer;
+    display: block;
+    justify-content: center;
+    color: rgb(87, 13, 13);
+    z-index: 20;
+}
+.programmes .searchBar:hover{
+    font-size: 50px;
+    color: rgb(87, 33, 33);
+}
+.programmes .modal .UniTitle{
+    margin: 10px auto;
+    padding-top: 10px;
+  }
+.programmes .modal .UniTitle h3{
+    font-size: 29px;
+  }
+
+   /* for the search content in the modal */
+
+.programmes .ModalOverlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: none;
+    scroll-behavior: unset;
+    background-color: var(--blur);
+}
+.programmes .ModalOverlay.active{
+    display: flex;
+}
+   .wrapper{
+    position: absolute;
+    display: none;
+    top: 65px;
+    /* left: auto; */
+    align-self: center;
+    max-width: 450px;
+    z-index: 20;
+}
+.wrapper .search-input{
+    position: relative;
+    background: #fff;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0px 1px 5px 3px rgba(0,0,0,0.1);
+}
+#searchInput{
+    height: 55px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    padding: 0 60px 0 25px;
+    font-size: 18px;
+}
+.search-input .icon i{
+    height: 55px;
+    width: 55px;
+    line-height: 55px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: center;
+    font-size: 30px;
+    color: #131029;
+    cursor: pointer;
+}
+.search-input .icon i:hover{
+   font-size: 35px;
+}
+.search-input .searchBar-close{
+    height: 55px;
+    width: 55px;
+    line-height: 55px;
+    position: absolute;
+    top: 0;
+    left: -16;
+    text-align: center;
+    font-size: 30px;
+    color: rgb(130, 20, 20);
+    cursor: pointer;
+}
+.search-input .autocom-box{
+    padding: 0;
+    max-height: 280px;
+    overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+}
+.search-input.active .autocom-box{
+    padding: 10px 8px;
+    opacity: 1;
+    pointer-events: auto;
+}
+.autocom-box li{
+    list-style: none;
+    padding: 8px 12px;
+    width: 100%;
+    cursor: default;
+    border-radius: 3px;
+    display: none;
+    font-size: 18px;
+}
+.search-input.active .autocom-box li{
+    display: block;
+}
+.autocom-box li:hover{
+     background: #efefef;
+}
+
+                              /*___for the accordion___*/                              
+
+.programmes .accordion .contentBx{
+    position: relative;
+    margin: 3px 20px;
+}
+.programmes .accordion .contentBx .label{
+   position: relative;
+   padding: 10px;
+   background: #203c43;
+   color: #fff;
+   cursor: pointer;
+   font-size: 150%;
+   font-weight: 400;
+   text-transform: capitalize;
+}
+.programmes .accordion .contentBx .label:hover{
+    background: #045063;
+}
+.programmes .accordion .contentBx .label::before{
+    content: '+';
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: 1.5em;
+    color: crimson;
+}
+.programmes .accordion .contentBx .content{
+    position: relative;
+    height: 0px;
+    overflow: hidden;
+    transition: 0.5s;
+}
+.programmes .accordion .contentBx.active .content{
+   height: fit-content;
+   padding: 10px;
+   overflow-y: auto;
+   transition: 0.5s;
+}
+.programmes .accordion .contentBx.active .label::before{
+    content: '-';
+}
+.programmes .accordion .contentBx .content ul li{
+    line-height: 30px;
+    background-color: rgb(128, 117, 102);
+
+    margin: 2px  50px;
+    text-align: center;
+    box-shadow: 2px 2px 8px;
+    border-radius: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    list-style: none;
+    text-transform: capitalize;
+    font-weight: 40px;
+    font-size: 18px;
+    cursor: pointer;
+}
+.programmes .accordion .contentBx .content ul li:hover{
+  text-decoration: underline;
+  opacity: 0.7;
+}
+
+ /*For the back button*/ 
+ .programmes span.back_button{
+    position: absolute;
+    top: 7px;
+    left: 8px;
+    font-weight: initial;
+    font-size: 14px;
+    cursor: pointer;
+    display: block;
+    justify-content: center;
+  }
+.programmes  span.back_button a{
+    text-decoration: none;
+    color: rgb(140, 6, 33);
+    font-style: italic;
+    font-size: 15px;
+  }
+.programmes  span.back_button a:hover{
+    color: rgb(66, 64, 64);
+  }
+
+/* NEWLY inserted styling */
+ /*for the kah small title*/
+ .programmes  .title h3{
+    margin-top:1%;
+      padding: 2% 5%;
+      font-size: 180%;
+      text-align: left;
+      color: rgb(124, 10, 37);
+      font-style: italic;
+      text-transform: capitalize;
+  }
+.accordion.courses{
+    display: flex;
+    width: 100%;
+    height: 46vh;
+    /* background-color: #ccc; */
+    font-family: 'Merienda';
+}
+.yearList{
+    height: fit-content;
+    width: 20vw;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 3px;
+}
+.yearList li{
+    text-align: center;
+    padding: 10px;
+}
+.yearList li h1{
+    cursor: pointer;
+    color: var(--bg);
+    padding: 8px;
+    border-radius: 6px;
+    opacity: 1;
+    font-style: italic;
+    transition: 0.3s ease;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.yearList li h1:hover{
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 2.5);
+}
+.courseList{
+    padding: 30px;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 70vw;
+    overflow: hidden;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 2.5);
+    margin-left: 10px;
+}
+.courseList li{
+    padding: 5px;
+    margin: 10px;
+    height: fit-content;
+}
+.courseList li h2{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ccc;
+    padding: 20px;
+    background-color: var(--black);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.15s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 2.5);
+}
+.courseList li h2:hover{
+    color: #fff;
+    background-color: var(--bg);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 2.5);
+}

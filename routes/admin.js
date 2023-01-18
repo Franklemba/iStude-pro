@@ -6,9 +6,7 @@ const path = require('path')
 const StudentPapers = require('../models/StudentUploadSchema') 
 const Comments = require('../models/commentSchema')
 const AdminUsers = require('../models/registerSchema')
-
-
-
+const {S3} = require("aws-sdk");
 
 const applicationMimeType = [    
     'application/pdf',
@@ -16,19 +14,26 @@ const applicationMimeType = [
     "application/vnd.openxmlformats-officedocument.presentationml.presentation"
 ]
 
-const storage = multer.diskStorage({
-    destination: (req, file,cb)=>{
-        cb(null,`public/uploads/cbu/${req.body.school.split('(')[1].split(')')[0]}`)
-    },
+const storage = multer.memoryStorage({
     fileFilter: (req, file, callback)=>{
         callback(null,applicationMimeType.includes(file.mimetype))
-    },
-    filename: (req, file, cb)=>{
-        cb(null,req.body.course+' '+req.body.assessmentType+' '+req.body.year+ path.extname(file.originalname))
     }
 })
 
 const upload = multer({storage: storage})
+
+const s3Uploadv2 = async(file,school,paperName) =>{
+    const s3 = new S3()
+
+    const param = {
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: `uploads/${school}/${paperName}`,
+        Body: file.buffer
+    };
+
+    return await s3.upload(param).promise();
+}
+
 
 /////admin home page
 router.get('/', async (req,res)=>{
@@ -110,12 +115,13 @@ router.get('/uploadPapers',async (req,res)=>{
     })
 })
 
-
 ////saving paper to database
-router.post('/uploadPapers',upload.single('pastPaper'),async (req,res)=>{
+router.post('/uploadPapers',upload.single('pastPaper'), async (req,res)=>{
+    const file = req.file;
+    const paperName  = `${req.body.course} ${req.body.assessmentType} ${req.body.year}${path.extname(file.originalname)}`;
+    const SchoolNameEdit = req.body.school.split('(')[1].split(')')[0];
+    const result = await s3Uploadv2(file,SchoolNameEdit,paperName);
 
-    const paperName  = req.file.filename
-    const SchoolNameEdit =req.body.school.split('(')[1].split(')')[0]
     const initialStudentPapers = await StudentPapers.find({
         school:SchoolNameEdit,
         program: req.body.program,
