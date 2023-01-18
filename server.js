@@ -46,7 +46,7 @@ let users = []
 //////////////database connection////////////
 
 
-   mongoose.connect(process.env.DATABASE_Url || process.env.database_Url).then(()=>{
+   mongoose.connect(process.env.database_Url).then(()=>{
     console.log('database is connected')
    }).catch((err)=> console.log('error connecting to database ',err))
  
