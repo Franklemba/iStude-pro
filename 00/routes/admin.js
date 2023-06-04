@@ -1,19 +1,27 @@
 const express = require('express')
 const router = express.Router()
 const multer = require('multer')
+const multerS3 = require('multer-s3')
 const fs = require('fs')
 const path = require('path')
 const StudentPapers = require('../models/StudentUploadSchema') 
 const Comments = require('../models/commentSchema')
 const AdminUsers = require('../models/registerSchema')
-const {S3} = require("aws-sdk");
-
+const aws = require("aws-sdk");
 const applicationMimeType = [    
     'application/pdf',
     "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     "application/vnd.openxmlformats-officedocument.presentationml.presentation"
 ]
 
+
+aws.config.update({
+    secretAccessKey:process.env.AWS_SECRET_ACCESS_KEY,
+    accessKeyId:process.env.AWS_ACCESS_KEY_ID,
+    region:process.env.AWS_REGION
+ })
+ 
+ const s3 = new aws.S3();
 const storage = multer.memoryStorage({
     fileFilter: (req, file, callback)=>{
         callback(null,applicationMimeType.includes(file.mimetype))
@@ -21,13 +29,11 @@ const storage = multer.memoryStorage({
 })
 
 const upload = multer({storage: storage})
-
 const s3Uploadv2 = async(file,school,paperName) =>{
-    const s3 = new S3()
 
     const param = {
         Bucket: process.env.AWS_BUCKET_NAME,
-        Key: `uploads/${school}/${paperName}`,
+        Key: `uploads/${school}/${paperName}`,     
         Body: file.buffer
     };
 
@@ -38,7 +44,7 @@ const s3Uploadv2 = async(file,school,paperName) =>{
 /////admin home page
 router.get('/', async (req,res)=>{
 
-    const studentPapers =  await StudentPapers.find({})
+    const studentPapers =  await StudentPapers.find().sort({createdAt:-1})
     if(req.user.username === 'istude'){
         res.render('admin/monitorPage',{
             papers:studentPapers,
@@ -169,7 +175,8 @@ router.post('/uploadPapers',upload.single('pastPaper'), async (req,res)=>{
         res.render('admin/studentPapers',{
             StudentPapers: student_Papers,
             message: "upload wasn't successful",
-            url: "/admin/uploadPapers"
+            url: "/admin/uploadPapers",
+            name: req.user.username
         })
         console.log(err)
     }
@@ -192,12 +199,10 @@ router.post('/', async (req,res)=>{
     try{
             await studentPapers.save()
 
-            fs.unlink(`public/uploads/cbu/${school}/${singlePaper}`, err=>{
-                if(err)
-                    console.log(`an error has occurred => ${err}`)
-                else
-                   console.log('file was deleted successfully')
-            })
+            await s3.deleteObject({
+                Bucket: process.env.AWS_BUCKET_NAME,
+                Key: `uploads/${school}/${singlePaper}`
+               }).promise();
             console.log('paper was deleted successfully')
             res.redirect('/admin')
       
@@ -207,6 +212,7 @@ router.post('/', async (req,res)=>{
         const studentPapers =  await StudentPapers.find({})
         res.render('admin/monitorPage',{
             papers: studentPapers,
+            name: req.user.username,
             message: "error deleting paper",
             url: "/admin"
         })

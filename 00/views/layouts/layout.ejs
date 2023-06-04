@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/style.css" >
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <title>iStude</title>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+  
+</head>
+<body>
+  <div class="loaderBox"> 
+    <div class="container">
+       <span><a href="#" class="logo">
+         <img src="https://istude.s3.ap-south-1.amazonaws.com/media/iStude.png" alt="">
+     </a></span>
+       <span class="drop"></span>
+   </div>
+
+   <svg>
+       <defs>
+           <filter id="gooey">
+               <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
+               <feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 35 -20" result="gooey" />
+               <feComposite in="SourceGraphic" in2="gooey" operator="atop" />
+           </filter>
+       </defs>
+   </svg>
+ </div>
+
+      <!--header section starts-->
+      <header class="header">
+
+        <a href="/" class="logo" >
+            <img src="https://istude.s3.ap-south-1.amazonaws.com/media/iStude.png" alt="">
+        </a>
+  
+        <nav class="navbar">
+          <a href="/" onclick = 'fugo()' >home</a>
+          <a href="/schools"  class="XulOptions">schools</a>
+          <a href="/admin" onclick = 'fugo()'>admin</a>
+  
+        </nav>
+        
+        <div class="menuIcon">
+            
+            <span></span>
+            <span></span>
+            <span></span>
+        
+        </div>
+        
+  
+      </header>
+      <div class="overLay"></div>
+  
+      <!--header section ends-->
+    
+       
+      <!-- Middle -->
+
+        <%- include('../partials/message') %> 
+        
+        <%- body %>
+    
+    <!-- Middle -->
+
+
+    
+    <!--footer section begins-->
+    <section  class="footer">
+        <div class="share">
+          <a href="#" class="fa fa-facebook"></a>
+          <!-- <a href="#" class="fa fa-twitter"></a> -->
+          <a href="https://www.instagram.com/istude.zm/" class="fa fa-instagram"></a>
+          <!-- <a href="#" class="fa fa-linkedin"></a> -->
+          <a href="#" class="fa fa-whatsapp"></a>
+        </div>
+
+        <div class="links">
+          <a href="/">home</a>
+          <a href="/schools">school</a>
+          <a href="#terms$conditions">Terms & Conditions</a>
+          <a href="/admin">admin</a>
+        </div>
+
+        <div class="credit">created by <span> Franklemba</span> | all rights reserved</div>
+        <div class="credit">
+         <h5> <strong>email: </strong><i>franklembalemba3@gmail.com</i></h5><br>
+          <h5><strong>contact: </strong> <i>0769901942 & 0976958373</i></h5>
+        </div><br><br>
+        <div class="credit">&copy;2023 </div>
+
+       </section>
+    <!--footer section begins-->
+</body>
+
+  
+</html>
+
+<script>
+//document.querySelector('.loaderBox').style.display = 'none'
+ window.onload = function(){
+    
+         document.querySelector('.loaderBox span .logo img').style.opacity = 1;
+         setTimeout(function(){
+           document.querySelector('.loaderBox').style.display = 'none'
+             document.querySelector('.schoolz').style.opacity = 1 
+             document.querySelector('.menuIcon').style.opacity = 1
+             document.querySelector('.home').style.opacity = 1
+             document.querySelector('.about').style.opacity = 1
+             document.querySelector('.contact').style.opacity = 1
+             document.querySelector('.footer').style.opacity = 1
+             document.querySelector('.header .logo img').style.opacity = 1
+             document.querySelector('.menuIcon').style.opacity = 1
+       },10)
+ }
+    
+
+</script>
+
+<script src="/js/script.js"></script>

@@ -28,7 +28,7 @@
          <div class="inputbox" id="filterCourses" >
           
           <div >
-                <h2>filter:</h2>
+                <h2>Select year of Study</h2>
               <select name="yearOfStudy" id="yearOfStudy">
       
               </select>
@@ -141,9 +141,9 @@
         data.forEach(element=>{
           element.programs.forEach(program=>{
                       if(element.school.split('(')[1].split(')')[0] == userName){
-                        programArray.push(`<option label="${program.programName}" value="${program.programName}"></option>`)
+                        programArray.push(`<option label="${program.programName}" value="${program.programName}">${program.programName}</option>`)
                       }else if(userName.length == 6){
-                        programArray.push(`<option label="${program.programName}" value="${program.programName}"></option>`)
+                        programArray.push(`<option label="${program.programName}" value="${program.programName}">${program.programName}</option>`)
                       }
                     })
                       
@@ -164,23 +164,24 @@
                 program.COURSES.forEach(content=>{
                   if(program.programName == programContent){
                     schoolsValue = element.school
-                    yearOfStudyArray.push(`<option label="${content.year}" value="${content.year}"></option>`)
+                    yearOfStudyArray.push(`<option label="${content.year}" value="${content.year}">${content.year}</option>`)
                     content.courses.forEach(Courses=>{
-                            coursesArray.push(`<option label="${Courses}" value="${Courses}"></option>`)
+                            coursesArray.push(`<option label="${Courses}" value="${Courses}">${Courses}</option>`)
                           })
                   }
                 })
               })
                 
             })
-
-            yearOfStudy.innerHTML = yearOfStudyArray  
+            yearOfStudyArray.unshift(`<option value="" disabled selected>filter year</option>`);
+            yearOfStudy.innerHTML = yearOfStudyArray;  
             course.innerHTML = coursesArray
  
       ///////////////////eventListener////////////////////////
 
-            program.addEventListener('click',(e)=>{
+            program.addEventListener('change',(e)=>{
 
+  
                 const yearOfStudyArray = []
                 const coursesArray = []
                 const yearOfStudyContent = yearOfStudy.value
@@ -190,15 +191,16 @@
                       program.COURSES.forEach(content=>{
                         if(e.target.value == program.programName){
                           schoolsValue = element.school
-                          yearOfStudyArray.push(`<option label="${content.year}" value="${content.year}"></option>`)
+                          yearOfStudyArray.push(`<option label="${content.year}" value="${content.year}">${content.year}</option>`)
                             content.courses.forEach(Courses=>{
-                            coursesArray.push(`<option label="${Courses}" value="${Courses}"></option>`)
+                            coursesArray.push(`<option label="${Courses}" value="${Courses}">${Courses}</option>`)
                           })
                         }
                       })
                     })
                       
                   })
+                  yearOfStudyArray.unshift(`<option value="" disabled selected>filter year</option>`);
                   yearOfStudy.innerHTML = yearOfStudyArray   ////when there is a selection
                   course.innerHTML = coursesArray
                   programValue = e.target.value
@@ -208,7 +210,7 @@
 
 ////////////////////yearOfStudy selection begins here ////////////////////////
           
-     yearOfStudy.addEventListener('click',(e)=>{    //this is meant to filter the courses according to the yearOfStudy
+     yearOfStudy.addEventListener('change',(e)=>{    //this is meant to filter the courses according to the yearOfStudy
         const coursesArray = []
         const programContent = program.value 
             data.forEach(element=>{
@@ -217,7 +219,7 @@
                     program.COURSES.forEach(content=>{
                             content.courses.forEach(Courses=>{
                               if(e.target.value == content.year ){
-                                coursesArray.push(`<option label="${Courses}" value="${Courses}"></option>`)
+                                coursesArray.push(`<option label="${Courses}" value="${Courses}">${Courses}</option>`)
                               }
                             })
                           

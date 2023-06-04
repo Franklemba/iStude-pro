@@ -23,7 +23,12 @@ const papersSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    papers: [String]
+    papers: [String],
+    createdAt: {
+        type: Date,
+        required: true,
+        default: Date.now
+    }
 
 })
 

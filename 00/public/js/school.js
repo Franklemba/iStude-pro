@@ -20,7 +20,7 @@ const modalContent = `
 
      <div class="imgUni">
                 <a class="logo">
-                    <img src="/media/cbuLgo.png" alt="">
+                    <img src="https://istude.s3.ap-south-1.amazonaws.com/media/cbuLgo.png" alt="">
                 </a>
      </div>
 

@@ -5,9 +5,10 @@
         <div class="content">
            <h3>access your exam past papers</h3>
            <p>Welcome to iStude, we provide you with university past exam papers.
-             All you have to do is \select your particular program by clicking <b>get started</b> below and you will be provided with 
-             different options\.The past papers include assignments, sessionals, test 1, test 2 and quiz.
+             All you have to do is to select your particular program by clicking <b>view papers</b> below and you will be provided with 
+             different options. The past papers include assignments, sessional, test 1, test 2 , test 3 and quiz.
            </p>
+           <a href="/schools"><button>view papers</button></a>
         </div>
     </section>
 
@@ -18,8 +19,8 @@
        <!-- <h1 class="heading"><span>about</span> us</h1> -->
        
        <div class="row">
-         <div class="image">
-           <img src="/media/fish.jpg" alt="">
+         <div class="image" id="">
+           <img src="https://istude.s3.ap-south-1.amazonaws.com/media/fish.jpg" alt="">
          </div>
          <div class="content">
            <h3>what makes this site special?</h3>
@@ -44,9 +45,9 @@
        <section class="contact" id="contact">
         <h1 class="heading"> <span>share</span> your views </h1>
         <!-- <h1></h1> -->
-        
+        <div class="0"></div>
          <div class="row">
-         
+         .
            <form action="/" method="POST">
              <h3>views</h3>
              <p id="contactP">Any suggestions, questions ,comments? let us know in the comment section below.</p>
@@ -57,7 +58,7 @@
                <input type="text" name="program" id="program" placeholder="program" required>
              </div>
              <div class="inputbox">
-              <input type="number" min="1" max="7" name="yearOfStudy" id="yearOfStudy" placeholder="yearOfStudy" required>
+              <input type="number" min="1" max="7" name="yearOfStudy" id="yearOfStudy" placeholder="year Of Study" required>
             </div>
              <div class="inputbox">
                <textarea name="comment" id="comment" cols="50" rows="5" placeholder="comment" required ></textarea>
@@ -69,4 +70,27 @@
  
      </section>
      <!--contact section ends-->
+
+     <script>
+      //document.querySelector('.loaderBox').style.display = 'none'
+      document.querySelector('.home').style.opacity = 1
+      
+       window.onload = function(){
+          
+               document.querySelector('.loaderBox span .logo img').style.opacity = 1;
+               setTimeout(function(){
+                 document.querySelector('.loaderBox').style.display = 'none'
+                   document.querySelector('.schoolz').style.opacity = 1 
+                   document.querySelector('.menuIcon').style.opacity = 1
+                   document.querySelector('.home').style.opacity = 1
+                   document.querySelector('.about').style.opacity = 1
+                   document.querySelector('.contact').style.opacity = 1
+                   document.querySelector('.footer').style.opacity = 1
+                   document.querySelector('.header .logo img').style.opacity = 1
+                   document.querySelector('.menuIcon').style.opacity = 1
+             },10)
+       }
+          
+      
+      </script>
 
