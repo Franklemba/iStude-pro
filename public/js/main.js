@@ -1,7 +1,6 @@
-
 // object for the course attributes
-let CourseAttribute = ['Assignment','Quiz','Sessional','Test 1','Test 2']
 
+let CourseAttribute = ['Assignment','Quiz','Sessional','Test 1','Test 2'];
 //////////////////////////////////////////////////////////////////////////////////////////
 DemoFimo = {
         setDemo: function(courseName,NewSchoolName,school){
@@ -11,11 +10,12 @@ DemoFimo = {
         CourseInnerChange: function(courseName,NewSchoolName,school){  
 
                 NewCourseName = courseName;
+
                 searchBarClose();  ///function dealing with the search system implementation
                 const SchoolLabel = document.querySelector('.SchoolLabel h1');
                 let demo = document.querySelector('.accordion');
 
-                demo.classList.remove('courses')
+                demo.classList.remove('courses');
                 let backController;
 
                 switch(school){
@@ -62,18 +62,17 @@ DemoFimo = {
 
 
                 let CourseAttrib = document.querySelector('.CourseAttrib');
+
                 CourseAttribute.forEach(data=>{
-                    CourseAttrib.innerHTML += `<p onclick='PastPaper.papers("${data.toLowerCase()}","${courseName}")'>${data}</p>`
+                    CourseAttrib.innerHTML += `<p onclick='PastPaper.papers("${data.toLowerCase()}","${courseName}")'>${data}</p>`;
                 })
             
                 demo.appendChild(ListPapers)
-                PastPaper.papers("sessional",`${courseName}`)
+                PastPaper.papers("sessional",`${courseName}`);
         }
     
 }
     
-
-
        ///////////////_______this function is meant to display the past papers accordingly_______/////////
  PastPaper = {
     papers: function(CourseAttribute,courseName){
@@ -82,7 +81,7 @@ DemoFimo = {
 
     PapersView: function(CourseAttribute,courseName){
 
-        document.querySelector('.loaderBox').style.display = 'flex'    //for the loading page
+        document.querySelector('.loaderBox').style.display = 'flex';    //for the loading page
         document.querySelector('.loaderBox').style.opacity = 1       //for the loading page
 
         NewCoName = NewCourseName;
@@ -92,7 +91,7 @@ DemoFimo = {
             CourseAttrib.forEach(data=>{
                     data.style = `
                     box-shadow: 0 ;
-                    `
+                    `;
                 if(data.textContent.toLocaleLowerCase() == CourseAttribute.toLocaleLowerCase())
                 {
                     data.style = `
@@ -100,7 +99,7 @@ DemoFimo = {
                     `;
 
                 }
-            })
+            });
 
 
                 ////////////________///////////////////
@@ -112,7 +111,7 @@ DemoFimo = {
                                 data.courses.forEach(data=>{
                                     // allCoursesArray.push(`${data} ${program.programName}`)
                                     if(courseName == data){
-                                        NewSchool = school.school
+                                        NewSchool = school.school;
                                     }
                                     // console.log(data);
                                 })
@@ -122,7 +121,6 @@ DemoFimo = {
                     })
                 })
                 ////////////________///////////////////
-
 
                  
         ///////////////////////////_______/////////////////////////////////////////
@@ -182,9 +180,7 @@ DemoFimo = {
 }
 
 
-
-
-document.querySelector('.loaderBox').style.display = 'none'
+document.querySelector('.loaderBox').style.display = 'none';
 
 // window.onload = function(){
     
@@ -202,50 +198,3 @@ document.querySelector('.loaderBox').style.display = 'none'
 //         },10)
 // }
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

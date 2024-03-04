@@ -1,5 +1,3 @@
-
-
 let DisplayCourses =(data,SchoolLabelName)=>{
 
 
@@ -39,8 +37,8 @@ let DisplayCourses =(data,SchoolLabelName)=>{
         title.textContent = programName;
         SchoolLabel.textContent = SchoolLabelName;
         accordion.classList.add('courses');
-        accordion.innerHTML = `<span onclick="displayModal()" class='back_button'>
-        <a href="#"><i class="bi bi-arrow-left-square-fill"></i></a></span> `;
+        // accordion.innerHTML = `<span onclick="displayModal()" class='back_button'>
+        // <a href="#"><i class="bi bi-arrow-left-square-fill"></i></a></span> `;
         const YearList = document.createElement("div");
         const CourseList = document.createElement("div");
         YearList.classList.add('yearList');
@@ -93,7 +91,6 @@ let DisplayCourses =(data,SchoolLabelName)=>{
 
 /////////____________________FOR THE SEARCH ICON WHEN CLICKED_______________________//////////
 
-
 //////////////_________this function is called once a year is clicked___________////////////////
 
 var ClickedYear = (programName,year)=>{
@@ -142,8 +139,6 @@ var ClickedYear = (programName,year)=>{
 
     ///////_________///////
         courseList.innerHTML = ` `;  
-
-
         allCoursesArray.forEach(data=>{
             courseList.innerHTML += `<a href="schools/${data}"><li><h2>${data}</h2></li></a>`
         })

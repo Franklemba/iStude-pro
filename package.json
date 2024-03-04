@@ -5,13 +5,14 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "fdtmStart": "nodemon server.js"
+    "odtmStart": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.1295.0",
     "bcrypt": "^5.1.0",
+    "canvas": "^2.11.2",
     "connect-redis": "^7.0.1",
     "cookie-session": "^2.0.0",
     "dotenv": "^16.0.3",
@@ -27,9 +28,14 @@
     "nodemon": "^2.0.20",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
+    "pdf-lib": "^1.17.1",
     "uuid": "^9.0.0"
   },
-  "engines":{
-    "node":">=16"
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=16"
   }
 }

@@ -1,4 +1,8 @@
 <link rel="stylesheet" type="text/css" href="/css/style.css" >
+<script src="https://unpkg.com/pdf-lib"></script>
+
+
+    <!-- <script src="bundle.js"></script> -->
 
 <section class="pastPaperView">
    
@@ -14,9 +18,25 @@
                              <p><strong><%=element.program%>_<%=element.assessmentType%></strong></p>
                                 <% element.papers.forEach(paper => { %>
 
-                                        <a  href='https://istude.s3.ap-south-1.amazonaws.com/uploads/<%=element.school%>/<%=paper%>' download>
+                                        <!-- <a  href='https://istude.s3.ap-south-1.amazonaws.com/uploads/<%=element.school%>/<%=paper%>' download>
                                             <ul>
                                                 <li><i class="bi bi-file-earmark-pdf-fill"><%=paper%></i></li>
+                                                <li><div class="fa fa-download" id="download-btn"></div></li>                                                        
+                                            </ul>
+                                        </a> -->
+                                        <!-- <embed src="/uploads/<%=paper%>" type="application/pdf" width="100%" height="600px" /> -->
+                                            <iframe src="/uploads/<%=paper%>" width="100%" height="600px" id="pdfViewer"></iframe>
+<!-- 
+                                            <object data="/uploads/<%=paper%>" type="application/pdf" width="100%" height="600px">
+                                                <p>Alternative text if the browser does not support displaying PDF files.</p>
+                                            </object> -->
+                                            
+
+
+
+                                        <a href='/uploads/<%=paper%>' target="_blank">
+                                            <ul>
+                                                <li><i class="bi bi-file-earmark-pdf-fill"></i><%=paper%></li>
                                                 <li><div class="fa fa-download" id="download-btn"></div></li>                                                        
                                             </ul>
                                         </a>
@@ -34,8 +54,18 @@
         
 </section>
 
+<section>
+    <!-- <button onclick="createPdf()">Generate PDF</button> -->
+    <p class="small">(Your browser will download the resulting file)</p>
+    <iframe id="pdf" style="width: 80%; height: 250px;"></iframe>
+</section>
+
+
+
 <script>
+
     const pastPaperView = document.querySelector('.pastPaperView')
+
     
     if(pastPaperView.innerText.length == 0){
         pastPaperView.innerHTML = `
@@ -45,5 +75,15 @@
                        </div>
                     `
     }
-
+   
+    createPdf();
+    async function createPdf() {
+      const pdfDoc = await PDFLib.PDFDocument.create();
+      const page = pdfDoc.addPage([500, 600]);
+      page.moveTo(110, 200);
+      page.drawText('Hello World!');
+      const pdfDataUri = await pdfDoc.saveAsBase64({ dataUri: true });
+      document.getElementById('pdf').src = pdfDataUri;
+    }
+   
 </script>

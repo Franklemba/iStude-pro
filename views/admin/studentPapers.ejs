@@ -1,6 +1,6 @@
 
 <link rel="stylesheet" type="text/css" href="/css/style.css" >
-<script src="/js/CbuProgrammes.js"></script>
+<!-- <script src="/js/CbuProgrammes.js"></script> -->
 
 <div class="row">
   
@@ -12,6 +12,7 @@
     </a>
     
       <h3>Upload Past paper</h3>
+      
  
       <div class="paperContent">
   
@@ -21,7 +22,7 @@
           
           <h2>Select Program:</h2>
           <select name="program" id="program">
-  
+               
           </select>
          </div>
   
@@ -30,13 +31,17 @@
           <div >
                 <h2>Select year of Study</h2>
               <select name="yearOfStudy" id="yearOfStudy">
-      
+                <!-- <option value=""></option> -->
+                    <option value="2020"></option>
+                    <option value="2021"></option>
+                    <option value="2022"></option>
+                    <option value="2023"></option>
               </select>
           </div>
           <div>
                 <h2>Select course:</h2>
               <select name="course" id="course">
-                
+                     <option value=""></option>
               </select>
           </div>
          </div>
@@ -140,11 +145,11 @@
 
         data.forEach(element=>{
           element.programs.forEach(program=>{
-                      if(element.school.split('(')[1].split(')')[0] == userName){
+                      // if(element.school.split('(')[1].split(')')[0] == userName){
                         programArray.push(`<option label="${program.programName}" value="${program.programName}">${program.programName}</option>`)
-                      }else if(userName.length == 6){
-                        programArray.push(`<option label="${program.programName}" value="${program.programName}">${program.programName}</option>`)
-                      }
+                      // }else if(userName.length == 6){
+                      //   programArray.push(`<option label="${program.programName}" value="${program.programName}">${program.programName}</option>`)
+                      // }
                     })
                       
                   })
@@ -158,7 +163,8 @@
       const yearOfStudyArray = []
       const coursesArray = []
       const yearOfStudyContent = yearOfStudy.value
-        data.forEach(element=>{
+      data.forEach(element=>{
+
               element.programs.forEach(program=>{
                 
                 program.COURSES.forEach(content=>{
@@ -173,9 +179,10 @@
               })
                 
             })
-            yearOfStudyArray.unshift(`<option value="" disabled selected>filter year</option>`);
-            yearOfStudy.innerHTML = yearOfStudyArray;  
-            course.innerHTML = coursesArray
+
+          yearOfStudyArray.unshift(`<option value="" disabled selected>filter year</option>`);
+          yearOfStudy.innerHTML = yearOfStudyArray;  
+          course.innerHTML = coursesArray
  
       ///////////////////eventListener////////////////////////
 
