@@ -1,5 +1,12 @@
 <link rel="stylesheet" type="text/css" href="/css/style.css" >
 <script src="https://unpkg.com/pdf-lib"></script>
+<!-- <script src="/lib/webviewer.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdftron/7.3.1/webviewer.min.js"></script> -->
+<!-- <script src="https://pdftron.s3.amazonaws.com/webviewer/7.3.1/webviewer.min.js"></script> -->
+<script src="https://cdnjs.pdftron.com/webviewer/7.3.1/webviewer.min.js"></script>
+
+
+
 
 
     <!-- <script src="bundle.js"></script> -->
@@ -54,15 +61,58 @@
         
 </section>
 
-<section>
-    <!-- <button onclick="createPdf()">Generate PDF</button> -->
-    <p class="small">(Your browser will download the resulting file)</p>
-    <iframe id="pdf" style="width: 80%; height: 250px;"></iframe>
-</section>
+<div id="viewer"></div>
+    <!-- <script src="../../menu-button.js"></script> -->
+    <script src="/js/webviewer.min.js"></script>
+
+
+    <!-- <script src="/js/viewing.js"></script> -->
+
+<!-- 
+<script type="module">
+
+    const { WebViewer }  = require('@pdftron/webviewer');
+
+        WebViewer(
+        {
+            path: 'https://cdnjs.cloudflare.com/ajax/libs/pdftron/7.3.1',
+            initialDoc: 'https://pdftron.s3.amazonaws.com/downloads/pl/demo-annotated.pdf',
+            disabledElements: [
+                        'downloadButton', // Disable download button
+                        'printButton', // Disable print button
+                        'searchButton', // Disable search button
+                        'selectToolButton', // Disable select tool button
+                        'menuButton' // Disable menu button
+                    ]
+        },
+        document.getElementById('viewer')
+        ).then(instance => {
+        samplesSetup(instance);
+
+        document.getElementById('select').onchange = e => {
+            instance.UI.loadDocument(e.target.value);
+        };
+
+        document.getElementById('file-picker').onchange = e => {
+            const file = e.target.files[0];
+            if (file) {
+            instance.UI.loadDocument(file);
+            }
+        };
+
+        document.getElementById('url-form').onsubmit = e => {
+            e.preventDefault();
+            instance.UI.loadDocument(document.getElementById('url').value);
+        };
+        });
+
+</script>
+
+     -->
 
 
 
-<script>
+<!-- <script>
 
     const pastPaperView = document.querySelector('.pastPaperView')
 
@@ -86,4 +136,41 @@
       document.getElementById('pdf').src = pdfDataUri;
     }
    
+</script> -->
+
+
+<script>
+    // Initialize WebViewer
+    WebViewer({
+        path: '/lib',
+        initialDoc: '/uploads/CS120 test 1 2020.pdf',
+        disabledElements: [
+            'downloadButton', // Disable download button
+            'printButton', // Disable print button
+            'searchButton', // Disable search button
+            'selectToolButton', // Disable select tool button
+            'menuButton' // Disable menu button
+        ],
+        config: {
+           showNavigationPanel: false
+       }
+    }, document.getElementById('viewer')).then(instance => {
+        samplesSetup(instance);
+
+        document.getElementById('select').onchange = e => {
+            instance.UI.loadDocument(e.target.value);
+        };
+
+        document.getElementById('file-picker').onchange = e => {
+            const file = e.target.files[0];
+            if (file) {
+            instance.UI.loadDocument(file);
+            }
+        };
+
+        document.getElementById('url-form').onsubmit = e => {
+            e.preventDefault();
+            instance.UI.loadDocument(document.getElementById('url').value);
+        };
+        });
 </script>

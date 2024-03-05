@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@pdftron/pdfnet-node": "^10.7.0",
+    "@pdftron/webviewer": "^10.7.2",
     "aws-sdk": "^2.1295.0",
     "bcrypt": "^5.1.0",
     "canvas": "^2.11.2",

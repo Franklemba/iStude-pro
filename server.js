@@ -14,6 +14,7 @@ const methodOverride = require('method-override')
 const fs = require('fs')
 const path = require('path')
 
+
 //////////////importing routers ////////////
 
 const homeRouter = require('./routes/index')
@@ -50,7 +51,7 @@ let users = []
 
 //////////////database connection////////////
 
-mongoose.connect(process.env.database_Url).then(()=>{
+mongoose.connect(process.env.DATABASE_Url).then(()=>{
   console.log('database is connected')
 }).catch((err)=> console.log('error connecting to database ',err))
 
