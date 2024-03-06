@@ -17,11 +17,16 @@ let DisplayCourses =(data,SchoolLabelName)=>{
                 if(program.programName == data){
                     programName = program.programName;
                     program.COURSES.forEach(data=>{
-                        YearArray.push(data.year);
-                        data.courses.forEach(data=>{
-                            allCoursesArray.push(data)
-                            // console.log(data);
-                        })
+
+                        data.courses.forEach(course=>{
+
+                        
+                            if(uniquePapersArray.includes(course)){
+    
+                                YearArray.push(data.year);
+                            }
+                        });
+
 
                         
                     })
@@ -55,7 +60,7 @@ let DisplayCourses =(data,SchoolLabelName)=>{
             document.querySelector('.yearList').innerHTML += `<li onclick="ClickedYear('${programName}','${data}','${SchoolLabelName}')"><h1>${data}</h1></li>`
         })
 
-        allCoursesArray.forEach(data=>{
+        uniquePapersArray.forEach(data=>{
     
             document.querySelector('.courseList').innerHTML += `<a href="schools/${data}"><li><h2>${data}</h2></li></a>`
         })
@@ -71,7 +76,7 @@ let DisplayCourses =(data,SchoolLabelName)=>{
 
                     if(details == 'accordion courses'){
                         document.querySelector('.courseList').innerHTML  = ` `;
-                        allCoursesArray.forEach(data=>{
+                        uniquePapersArray.forEach(data=>{
                             document.querySelector('.courseList').innerHTML += `<a href="schools/${data}"><li><h2>${data}</h2></li></a>`
                         })
                         document.querySelectorAll('.yearList li h1').forEach(data=>{
@@ -84,7 +89,6 @@ let DisplayCourses =(data,SchoolLabelName)=>{
                         return false;
                     }
                     
-                
             })
          /////////////________//////////////
 }
@@ -123,14 +127,23 @@ var ClickedYear = (programName,year)=>{
                 if(program.programName == programName){
                     programName = program.programName;
                     program.COURSES.forEach(data=>{
-                        YearArray.push(data.year);
 
-                        if(data.year == year){
 
-                            data.courses.forEach(data=>{
-                                allCoursesArray.push(data)
-                            })
-                        }
+                        data.courses.forEach(course=>{
+
+                        
+                            if(uniquePapersArray.includes(course)){
+    
+                                YearArray.push(data.year);
+                                if(data.year == year){
+        
+                                        allCoursesArray.push(course)
+                                }
+                            }
+                        });
+
+                        // YearArray.push(data.year);
+
                     })
                 }
             })

@@ -14,7 +14,6 @@ const methodOverride = require('method-override')
 const fs = require('fs')
 const path = require('path')
 
-
 //////////////importing routers ////////////
 
 const homeRouter = require('./routes/index')
@@ -51,7 +50,7 @@ let users = []
 
 //////////////database connection////////////
 
-mongoose.connect(process.env.DATABASE_Url).then(()=>{
+mongoose.connect(process.env.database_Url).then(()=>{
   console.log('database is connected')
 }).catch((err)=> console.log('error connecting to database ',err))
 
@@ -125,7 +124,7 @@ app.post('/register', checkNotAuthenticated,async (req,res)=>{
     console.log(err)
   }
   
-})
+});
 
 ///login page
 app.get('/login', checkNotAuthenticated,(req,res)=>{
@@ -174,6 +173,5 @@ function checkNotAuthenticated(req, res, next){
    next()
 
 }
-
 
 app.listen(process.env.PORT || 3007,()=> console.log('Server is Running'));

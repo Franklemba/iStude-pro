@@ -1,52 +1,34 @@
 <link rel="stylesheet" type="text/css" href="/css/style.css" >
 <script src="https://unpkg.com/pdf-lib"></script>
-<!-- <script src="/lib/webviewer.min.js"></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdftron/7.3.1/webviewer.min.js"></script> -->
-<!-- <script src="https://pdftron.s3.amazonaws.com/webviewer/7.3.1/webviewer.min.js"></script> -->
-<script src="https://cdnjs.pdftron.com/webviewer/7.3.1/webviewer.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-
-
-
-
-    <!-- <script src="bundle.js"></script> -->
 
 <section class="pastPaperView">
-   
 
-        <div style="margin-top: 20%;">
+        <div style="margin-top: 5%;">
 
+            <% let num = 0 %>
+            <% let id = 0 %>
                     <% content.forEach(element => { %>
                         
-                            
                         <% if (element.papers.length != 0) { %>
                         <div class="paperView">
                             <h2><%=element.school%></h2>
                              <p><strong><%=element.program%>_<%=element.assessmentType%></strong></p>
                                 <% element.papers.forEach(paper => { %>
 
-                                        <!-- <a  href='https://istude.s3.ap-south-1.amazonaws.com/uploads/<%=element.school%>/<%=paper%>' download>
-                                            <ul>
-                                                <li><i class="bi bi-file-earmark-pdf-fill"><%=paper%></i></li>
-                                                <li><div class="fa fa-download" id="download-btn"></div></li>                                                        
-                                            </ul>
-                                        </a> -->
-                                        <!-- <embed src="/uploads/<%=paper%>" type="application/pdf" width="100%" height="600px" /> -->
-                                            <iframe src="/uploads/<%=paper%>" width="100%" height="600px" id="pdfViewer"></iframe>
-<!-- 
-                                            <object data="/uploads/<%=paper%>" type="application/pdf" width="100%" height="600px">
-                                                <p>Alternative text if the browser does not support displaying PDF files.</p>
-                                            </object> -->
-                                            
-
-
-
-                                        <a href='/uploads/<%=paper%>' target="_blank">
+                                        <a id="<%=paper %>" data-toggle="modal" data-target="#modal<%=num%>">
                                             <ul>
                                                 <li><i class="bi bi-file-earmark-pdf-fill"></i><%=paper%></li>
-                                                <li><div class="fa fa-download" id="download-btn"></div></li>                                                        
+                                                <!-- <li><div class="fa fa-download" id="download-btn"></div></li> -->                                                       
                                             </ul>
-                                        </a>
+                                          </a>
+
+
+                                          <% num ++ %>
 
                                 <% }) %>
                         </div>
@@ -54,96 +36,74 @@
 
             <% }) %>
 
+            <% content.forEach(element => { %>
+                        
+                <% if (element.papers.length != 0) { %>
+              
+                        <% element.papers.forEach(paper => { %>
+
+
+                                  <!-- This is the modal paper below -->
+
+                                  <div class="modal fade" id="modal<%=id%>">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                  
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                          <h4 class="modal-title"><%=paper%></h4>
+                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                  
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                          <!-- Place your viewer content here -->
+                                          <section class="viewerId">
+                                            <div id="viewer"></div>
+                                          </section>
+                                        </div>
+                                  
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        </div>
+                                  
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <% id ++ %>
+
+                        <% }) %>
+             
+                <% } %>
+
+    <% }) %>
+
                
         </div>
     
-          
-        
 </section>
 
-<div id="viewer"></div>
+
+ <!-- Modal -->
+
+
+
     <!-- <script src="../../menu-button.js"></script> -->
     <script src="/js/webviewer.min.js"></script>
 
-
-    <!-- <script src="/js/viewing.js"></script> -->
-
-<!-- 
-<script type="module">
-
-    const { WebViewer }  = require('@pdftron/webviewer');
-
-        WebViewer(
-        {
-            path: 'https://cdnjs.cloudflare.com/ajax/libs/pdftron/7.3.1',
-            initialDoc: 'https://pdftron.s3.amazonaws.com/downloads/pl/demo-annotated.pdf',
-            disabledElements: [
-                        'downloadButton', // Disable download button
-                        'printButton', // Disable print button
-                        'searchButton', // Disable search button
-                        'selectToolButton', // Disable select tool button
-                        'menuButton' // Disable menu button
-                    ]
-        },
-        document.getElementById('viewer')
-        ).then(instance => {
-        samplesSetup(instance);
-
-        document.getElementById('select').onchange = e => {
-            instance.UI.loadDocument(e.target.value);
-        };
-
-        document.getElementById('file-picker').onchange = e => {
-            const file = e.target.files[0];
-            if (file) {
-            instance.UI.loadDocument(file);
-            }
-        };
-
-        document.getElementById('url-form').onsubmit = e => {
-            e.preventDefault();
-            instance.UI.loadDocument(document.getElementById('url').value);
-        };
-        });
-
-</script>
-
-     -->
-
-
-
-<!-- <script>
-
-    const pastPaperView = document.querySelector('.pastPaperView')
-
-    
-    if(pastPaperView.innerText.length == 0){
-        pastPaperView.innerHTML = `
-                      <div class="Non_Paper" >
-                          <h1>Oops!</h1>
-                          <h2>past papers for this course are not yet available</h2>
-                       </div>
-                    `
-    }
-   
-    createPdf();
-    async function createPdf() {
-      const pdfDoc = await PDFLib.PDFDocument.create();
-      const page = pdfDoc.addPage([500, 600]);
-      page.moveTo(110, 200);
-      page.drawText('Hello World!');
-      const pdfDataUri = await pdfDoc.saveAsBase64({ dataUri: true });
-      document.getElementById('pdf').src = pdfDataUri;
-    }
-   
-</script> -->
-
-
-<script>
+<script type="module" >
     // Initialize WebViewer
+
+    const webView = document.getElementById('viewer');
+    const modalTitle = document.querySelector('.modal-title');
+    let modalTitleContent = modalTitle.innerHTML;
+    // console.log(webView);
+
     WebViewer({
-        path: '/lib',
-        initialDoc: '/uploads/CS120 test 1 2020.pdf',
+        path: '/',
+        initialDoc: `/uploads/${modalTitleContent}`,
         disabledElements: [
             'downloadButton', // Disable download button
             'printButton', // Disable print button
@@ -154,23 +114,10 @@
         config: {
            showNavigationPanel: false
        }
-    }, document.getElementById('viewer')).then(instance => {
-        samplesSetup(instance);
-
-        document.getElementById('select').onchange = e => {
-            instance.UI.loadDocument(e.target.value);
-        };
-
-        document.getElementById('file-picker').onchange = e => {
-            const file = e.target.files[0];
-            if (file) {
-            instance.UI.loadDocument(file);
-            }
-        };
-
-        document.getElementById('url-form').onsubmit = e => {
-            e.preventDefault();
-            instance.UI.loadDocument(document.getElementById('url').value);
-        };
-        });
+    }, webView).then(instance => {
+        
+    });
 </script>
+
+
+

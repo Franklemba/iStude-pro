@@ -72,6 +72,14 @@
              </div>
  
       </div>
+
+      <div id="papers" style="display: none;">
+        
+        <% availaiblePastPapers.forEach(element => { %>
+                <%=element.course%> 
+        <% }) %>
+      </div>
+
  
       <span class="modal-close">&times;</span>
  
@@ -88,6 +96,28 @@
  
  <script>
    const CBU_data = cbuProgrammes;
+   const papersDiv = document.getElementById("papers");
+
+// If the papers div exists
+// if (papersDiv) {
+    // Get the inner text of the papers div
+    const papersText = papersDiv.innerText;
+
+    // Split the text into an array using a regular expression to match any whitespace characters
+    const papersArray = papersText.split(/\s+/)
+                                   .map(course => course.trim()) // Remove leading and trailing spaces
+                                   .filter(course => course !== ''); // Filter out empty strings
+
+    // Convert array to set to remove duplicates, then convert it back to an array
+    const uniquePapersArray = [...new Set(papersArray)];
+
+    console.log(uniquePapersArray);
+// }
+
+
+
+// Now you have an array of objects containing your data
+
    let schoolName = "School of Information & Communication Technology(SICT)";
    let programName = "Computer Science";
 
