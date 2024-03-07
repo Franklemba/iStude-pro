@@ -7,6 +7,9 @@
    
    <!--schoolz section begins-->
   <section class="schoolz" id="programmes" style="margin-top: 100px;">
+
+    <p id="userSchool"><%=user.school%></p>
+    <p id="userProgram"><%=user.program %></p>
    
    <!--programmes section begins-->
  <div class="programmes" >
@@ -19,7 +22,7 @@
  
       <div class="imgUni">
                  <a class="logo">
-                     <img src="https://istude.s3.ap-south-1.amazonaws.com/media/cbuLgo.png" alt="">
+                     <img src="/media/cbuLogo.png" alt="">
                  </a>
       </div>
  
@@ -59,7 +62,7 @@
      
              <div class="img">
                  <a href="/" class="logo">
-                 <img src="./media/iStude.png" alt="">
+                 <!-- <img src="/media/odtmLogo.png" alt=""> -->
                  </a>
              </div>
  
@@ -81,7 +84,7 @@
       </div>
 
  
-      <span class="modal-close">&times;</span>
+      <!-- <span class="modal-close">&times;</span> -->
  
  </div>
  
@@ -97,11 +100,10 @@
  <script>
    const CBU_data = cbuProgrammes;
    const papersDiv = document.getElementById("papers");
+   const userSchool = document.getElementById("userSchool");
+   const userProgram = document.getElementById("userProgram");
 
-// If the papers div exists
-// if (papersDiv) {
-    // Get the inner text of the papers div
-    const papersText = papersDiv.innerText;
+  const papersText = papersDiv.innerText;
 
     // Split the text into an array using a regular expression to match any whitespace characters
     const papersArray = papersText.split(/\s+/)
@@ -118,8 +120,8 @@
 
 // Now you have an array of objects containing your data
 
-   let schoolName = "School of Information & Communication Technology(SICT)";
-   let programName = "Computer Science";
+   let schoolName = `${userSchool.innerText}`;
+   let programName = `${userProgram.innerText}`;
 
    DisplayCourses(programName,schoolName);
 
@@ -176,23 +178,23 @@
 
 
     /////////////////////////////////////////////////////
-    Modal.style.visibility = "visible";
-    // MenuIcon.style.visibility = "hidden";
+    // Modal.style.visibility = "visible";
+    // // MenuIcon.style.visibility = "hidden";
 
-        modalclose.addEventListener('click', function () {  //eventlistener
-            fish.style.visibility = "visible";
-            Modal.style.visibility = "hidden";
-            // MenuIcon.style.visibility = "visible";
-            for (var i = 0; i < modalInnerO.length; i++) {
-                modalInnerO[i].style.transition = "none";
-            }
-            for (var i = 0; i < modalInnerI.length; i++) {
-                modalInnerI[i].style.transition = "none";
-            }
-            for (var i = 0; i < CoAttriDemo.length; i++) {
-                CoAttriDemo[i].style.color = "red";
-            }
-        })
+    //     modalclose.addEventListener('click', function () {  //eventlistener
+    //         fish.style.visibility = "visible";
+    //         Modal.style.visibility = "hidden";
+    //         // MenuIcon.style.visibility = "visible";
+    //         for (var i = 0; i < modalInnerO.length; i++) {
+    //             modalInnerO[i].style.transition = "none";
+    //         }
+    //         for (var i = 0; i < modalInnerI.length; i++) {
+    //             modalInnerI[i].style.transition = "none";
+    //         }
+    //         for (var i = 0; i < CoAttriDemo.length; i++) {
+    //             CoAttriDemo[i].style.color = "red";
+    //         }
+    //     })
 
     /////////////////////////////////////////////////////
 

@@ -182,19 +182,4 @@ DemoFimo = {
 
 document.querySelector('.loaderBox').style.display = 'none';
 
-// window.onload = function(){
-    
-//         document.querySelector('.loaderBox span .logo img').style.opacity = 1;
-//         setTimeout(function(){
-//             // document.querySelector('.schoolz').style.opacity = 1 
-//             document.querySelector('.menuIcon').style.opacity = 1
-//             document.querySelector('.home').style.opacity = 1
-//             document.querySelector('.about').style.opacity = 1
-//             document.querySelector('.contact').style.opacity = 1
-//             document.querySelector('.footer').style.opacity = 1
-//             document.querySelector('.header .logo img').style.opacity = 1
-//             document.querySelector('.menuIcon').style.opacity = 1
-//             document.querySelector('.loaderBox').style.display = 'none'
-//         },10)
-// }
     

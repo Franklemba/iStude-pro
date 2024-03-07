@@ -1,123 +1,68 @@
 <link rel="stylesheet" type="text/css" href="/css/style.css" >
-<script src="https://unpkg.com/pdf-lib"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <section class="pastPaperView">
 
-        <div style="margin-top: 5%;">
+  <% if (user.accountType == 'freeTier') { %>
 
-            <% let num = 0 %>
-            <% let id = 0 %>
+    <h3>
+      <button><a href="/schools/upgrade">Upgrade to Premium</a></button> <small>to access assignments, sessional, test 2 and more assessments for <%=content[0].course %></small>
+    </h3>
+   
+  <% } %>
+    
+
+        <div style="margin-top: 55px;">
+
                     <% content.forEach(element => { %>
                         
                         <% if (element.papers.length != 0) { %>
                         <div class="paperView">
                             <h2><%=element.school%></h2>
                              <p><strong><%=element.program%>_<%=element.assessmentType%></strong></p>
-                                <% element.papers.forEach(paper => { %>
 
-                                        <a id="<%=paper %>" data-toggle="modal" data-target="#modal<%=num%>">
-                                            <ul>
-                                                <li><i class="bi bi-file-earmark-pdf-fill"></i><%=paper%></li>
-                                                <!-- <li><div class="fa fa-download" id="download-btn"></div></li> -->                                                       
-                                            </ul>
-                                          </a>
+                             <% if (user.accountType == 'freeTier') { %>
 
+                              <a href="/schools/<%=element.course%>/<%=element.papers[0]%>">
+                                <ul>
+                                    <li><i class="bi bi-file-earmark-pdf-fill"></i><%=element.papers[0]%></li>
+                                    <li><i class="material-icons" id="preview-btn">picture_as_pdf</i></li>                                                  
+                                </ul>
+                              </a>
 
-                                          <% num ++ %>
+                              <p>
+                                 <small> for more <%=content[0].course %> test 1 papers Upgrade to Premium</small>
+                              </p>
 
-                                <% }) %>
+                                 <% } else { %>
+                                  
+                                  <% element.papers.forEach(paper => { %>
+     
+                                          <a href="/schools/<%=element.course%>/<%=paper%>">
+                                              <ul>
+                                                  <li><i class="bi bi-file-earmark-pdf-fill"></i><%=paper%></li>
+                                                  <li><i class="material-icons" id="preview-btn">picture_as_pdf</i></li>                                                  
+                                              </ul>
+                                            </a>
+     
+     
+                                  <% }) %>
+                             <% } %>
+
                         </div>
                         <% } %>
 
             <% }) %>
 
-            <% content.forEach(element => { %>
-                        
-                <% if (element.papers.length != 0) { %>
-              
-                        <% element.papers.forEach(paper => { %>
-
-
-                                  <!-- This is the modal paper below -->
-
-                                  <div class="modal fade" id="modal<%=id%>">
-                                    <div class="modal-dialog">
-                                      <div class="modal-content">
-                                  
-                                        <!-- Modal Header -->
-                                        <div class="modal-header">
-                                          <h4 class="modal-title"><%=paper%></h4>
-                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        </div>
-                                  
-                                        <!-- Modal body -->
-                                        <div class="modal-body">
-                                          <!-- Place your viewer content here -->
-                                          <section class="viewerId">
-                                            <div id="viewer"></div>
-                                          </section>
-                                        </div>
-                                  
-                                        <!-- Modal footer -->
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                        </div>
-                                  
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <% id ++ %>
-
-                        <% }) %>
-             
-                <% } %>
-
-    <% }) %>
-
                
         </div>
+
+
+
+        
     
 </section>
 
-
- <!-- Modal -->
-
-
-
-    <!-- <script src="../../menu-button.js"></script> -->
-    <script src="/js/webviewer.min.js"></script>
-
-<script type="module" >
-    // Initialize WebViewer
-
-    const webView = document.getElementById('viewer');
-    const modalTitle = document.querySelector('.modal-title');
-    let modalTitleContent = modalTitle.innerHTML;
-    // console.log(webView);
-
-    WebViewer({
-        path: '/',
-        initialDoc: `/uploads/${modalTitleContent}`,
-        disabledElements: [
-            'downloadButton', // Disable download button
-            'printButton', // Disable print button
-            'searchButton', // Disable search button
-            'selectToolButton', // Disable select tool button
-            'menuButton' // Disable menu button
-        ],
-        config: {
-           showNavigationPanel: false
-       }
-    }, webView).then(instance => {
-        
-    });
-</script>
 
 
 

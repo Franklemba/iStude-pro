@@ -26,8 +26,6 @@ let viewSearchBar = () =>{
       
             ///////////////____////////////////
 
-                
-
      CbuObject.forEach(school=>{
         school.programs.forEach(program=>{
             // if(program.programName == data){

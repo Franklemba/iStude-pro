@@ -59,25 +59,21 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-
-
-
-
 /////admin home page
 router.get('/', async (req,res)=>{
 
     const studentPapers =  await StudentPapers.find().sort({createdAt:-1})
-    if(req.user.username === 'istude'){
+    // if(req.user.username === 'istude'){
         res.render('admin/monitorPage',{
             papers:studentPapers,
-            name: req.user.username
+            name: 'istude'
         })
-    }else{
-        res.render('admin/studentPapers',{
-            StudentPapers: studentPapers,
-            name: req.user.username
-        })
-    }
+    // }else{
+    //     res.render('admin/studentPapers',{
+    //         StudentPapers: studentPapers,
+    //         name: req.user.username
+    //     })
+    // }
     
 })
 /////comment page
@@ -139,7 +135,7 @@ router.get('/uploadPapers',async (req,res)=>{
     const studentPapers = await StudentPapers.find({})
     res.render('admin/studentPapers',{
         StudentPapers: studentPapers,
-        name: req.user.username
+        name: 'istude'
     })
 })
 
@@ -257,7 +253,7 @@ router.post('/uploadPapers', upload.single('pastPaper'), async (req, res) => {
             StudentPapers: student_Papers,
             message: `${paperName} uploaded successfully`,
             url: "/admin/uploadPapers",
-            name: req.user.username
+            name: 'istude'
         });
         console.log(studentPapers);
     } catch (err) {
@@ -266,7 +262,7 @@ router.post('/uploadPapers', upload.single('pastPaper'), async (req, res) => {
             StudentPapers: student_Papers,
             message: "Upload wasn't successful",
             url: "/admin/uploadPapers",
-            name: req.user.username
+            name: 'istude'
         });
         console.log(err);
     }
@@ -301,7 +297,7 @@ router.post('/', async (req,res)=>{
         const studentPapers =  await StudentPapers.find({})
         res.render('admin/monitorPage',{
             papers: studentPapers,
-            name: req.user.username,
+            name: 'istude',
             message: "error deleting paper",
             url: "/admin"
         })

@@ -5,7 +5,9 @@ const Comments = require('../models/commentSchema')
 
 ////Home page
 router.get('/',(req,res)=>{
-    res.render('home/index')
+    res.render('home/index',{
+        user: req.user
+    })
 })
 router.post('/', async (req,res)=>{
     var message = req.body.comment

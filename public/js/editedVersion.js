@@ -5,7 +5,7 @@ let DisplayCourses =(data,SchoolLabelName)=>{
 
        const title = document.querySelector('.title h3');
        const accordion = document.querySelector('.accordion');
-       const allCoursesArray = [];
+    //    const allCoursesArray = [];
        const YearArray = [];
        const SchoolLabel = document.querySelector('.SchoolLabel h1');
 
@@ -22,13 +22,15 @@ let DisplayCourses =(data,SchoolLabelName)=>{
 
                         
                             if(uniquePapersArray.includes(course)){
+
+                                if(YearArray.includes(data.year) == false){
+                                    
+                                    YearArray.push(data.year);
+                                }
     
-                                YearArray.push(data.year);
                             }
                         });
 
-
-                        
                     })
                     return false;
                 }
@@ -128,13 +130,15 @@ var ClickedYear = (programName,year)=>{
                     programName = program.programName;
                     program.COURSES.forEach(data=>{
 
-
                         data.courses.forEach(course=>{
 
-                        
                             if(uniquePapersArray.includes(course)){
-    
-                                YearArray.push(data.year);
+
+                                if(YearArray.includes(data.year) == false){
+                                    
+                                    YearArray.push(data.year);
+                                }
+
                                 if(data.year == year){
         
                                         allCoursesArray.push(course)

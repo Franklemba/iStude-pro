@@ -1,0 +1,43 @@
+
+
+
+<section class="viewerId">
+   <p id="pastPaperPdf" style="display: none;"><%=pastPaperPdf %></p>
+   <h2 class="modal-title"><%=pastPaperPdf %></h4>
+     <div id="viewer"></div>
+
+</section>
+
+
+
+
+<script src="/js/webviewer.min.js"></script>
+
+<script>
+    // Initialize WebViewer
+
+    let webView = document.getElementById('viewer');
+    const pastPaperPdf = document.getElementById('pastPaperPdf');
+    const pastPaperPdfText = pastPaperPdf.innerText;
+
+    // console.log(webView);
+
+    WebViewer({
+        path: '/',
+        initialDoc: `/uploads/${pastPaperPdfText}`,
+        disabledElements: [
+            'downloadButton', // Disable download button
+            'printButton', // Disable print button
+            'searchButton', // Disable search button
+            'selectToolButton', // Disable select tool button
+            'menuButton', // Disable menu button
+            // 'panel', // Disable panel button
+            // 'viewControlsButton' // Disable
+        ],
+        config: {
+           showNavigationPanel: false
+       }
+    }, webView).then(instance => {
+        
+    });
+</script>

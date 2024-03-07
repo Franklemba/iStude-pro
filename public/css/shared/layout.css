@@ -42,6 +42,20 @@
     height: 4rem;
     opacity: 1;
 }
+.header .logo h2{
+    color: #000;
+	font-size: 5.5x;
+	display: inline-block;
+	width: 40px; /* Set the desired width for the circle */
+	height: 40px; /* Set the desired height for the circle */
+	background-color: rgb(206, 199, 199);
+	border-radius: 50%; /* Makes it a circle */
+	text-align: center;
+	line-height: 40px; /* Vertically centers the initials */
+	font-size: 20px; /* Adjust the font size as needed */
+	text-decoration: none; /* Removes the underline */
+	text-transform: uppercase;
+}
 .header .navbar a{
     margin: 0 1rem;
     font-size: 1.6rem;
@@ -73,7 +87,7 @@
     height: 5px;
     margin: 2.2px;
     border-radius: 2px;
-    background-color: var(--main-color);
+    background-color: rgb(206, 199, 199);
     transition: .5s;
 }
 .header .menuIcon.active span{

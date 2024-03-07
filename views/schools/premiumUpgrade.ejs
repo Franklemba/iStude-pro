@@ -1,0 +1,135 @@
+
+<style>
+    .subscription-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        max-width: 800px; /* Adjust as needed */
+        margin: 0 auto;
+    }
+
+    .subscription-plan {
+        background-color: #f3f3f3; /* Light background color */
+        padding: 20px;
+        width: 45%; /* Adjust width as needed */
+        margin-bottom: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    }
+
+    .subscription-plan h2 {
+        color: #E50914; /* Netflix red */
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .subscription-plan p {
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .subscription-plan ul {
+        margin-left: 20px;
+    }
+
+    .subscription-plan li {
+        list-style-type: disc;
+        margin-bottom: 5px;
+    }
+</style>
+
+
+
+<div  class="paperView">
+
+    <h1>Upgrade to Premium account</h1>
+    <div style="margin-top: 3%;">
+
+        
+        <div class="subscription-container">
+            <div class="subscription-plan">
+                <h2>1 Month Subscription</h2>
+                <p>Price: K5.00</p>
+                <p>Includes:</p>
+                <ul>
+                    <li>Feature 1</li>
+                    <li>Feature 2</li>
+                    <li>Feature 3</li>
+                </ul>
+            </div>
+        
+            <div class="subscription-plan">
+                <h2>3 Months Subscription</h2>
+                <p>Price: K12.00</p>
+                <p>Includes:</p>
+                <ul>
+                    <li>Save K3.00</li>
+                    <li>Feature 2</li>
+                    <li>Feature 3</li>
+                </ul>
+            </div>
+        
+            <div class="subscription-plan">
+                <h2>6 Months Subscription</h2>
+                <p>Price: K22.00</p>
+                <p>Includes:</p>
+                <ul>
+                    <li>Save K8.00</li>
+                    <li>Feature 2</li>
+                    <li>Feature 3</li>
+                </ul>
+            </div>
+        
+            <div class="subscription-plan">
+                <h2>1 Year Subscription</h2>
+                <p>Price: K50.00</p>
+                <p>Includes:</p>
+                <ul>
+                    <li>Feature K10.00</li>
+                    <li>Feature 2</li>
+                    <li>Feature 3</li>
+                </ul>
+            </div>
+        </div>
+          <hr>
+        <form action="/auth/upgrade" method="POST">
+            <h3>Initiate payment via Mobile money</h3>
+            <br>
+        
+            <div class="inputbox">
+                <label for="subscriptionPlan">Period </label>
+                <select name="subscriptionPlan" id="subscriptionPlan">
+                    <option value="1month">1 month</option>
+                    <option value="3months">3 months</option>
+                    <option value="6months">6 months</option>
+                    <option value="1year">1 year</option>
+                </select>
+            </div>
+            <br>
+            <br>
+
+            <div class="inputbox">
+                <label for="number">Subcription </label>
+                <input type="test" id="mobile number" name="mobile number" disabled value="K5.00" required />
+            </div>
+
+            <br><br>
+            
+        
+            <div class="inputbox">
+                <label for="number">Enter Mobile Money Number  </label>
+                <input type="number" id="mobile number" name="mobile number" placeholder="mobile number" required />
+            </div>
+            <br>
+        
+            <button type="submit">Submit</button>
+        </form>
+        
+           <br>
+           <br>
+           <!-- <p>Don't have an account? <a href="/auth/signUp">Sign up</a> </p> -->
+    </div>
+<br><br>
+   
+
+</div>

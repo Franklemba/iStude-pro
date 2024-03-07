@@ -1,0 +1,50 @@
+<!-- <link rel="stylesheet" type="text/css" href="/css/style.css" > -->
+
+<div class="paperView">
+
+    <div style="margin-top: 16%;">
+      <form action="/auth/signUp" method="POST">
+        <h3>REGISTER</h3><br>
+        <div class="inputbox">
+          <input type="text"  id="firstName" name="firstName" placeholder="firstName" required />
+        </div><br>
+        <div class="inputbox">
+          <input type="text"  id="lastName" name="lastName" placeholder="lastName" required />
+        </div><br>
+        
+        <div class="inputbox">
+          <input type="email"  id="email" name="email" placeholder="email" required />
+        </div><br>
+
+
+        <div class="inputbox">
+            <select name="school" id="school">
+                  <option value="School of Information & Communication Technology(SICT)">School of Information & Communication Technology</option>
+                  <option value="School of Business(SofB)">School of Business</option>
+                  <option value="School of Mathematics and Natural Sciences(SMNS)">School of Mathematics and Natural Sciences</option>
+            </select>
+          </div><br>
+        <div class="inputbox">
+            <select name="program" id="program">
+                  <option value="Computer Science">Computer Science</option>
+                  <option value="Computer Engineering">Computer Engineering</option>
+                  <option value="Accountancy">Accountancy</option>
+                  <option value="Business Administration">Business Administration</option>
+                  <option value="Non Quota">Non Quota</option>
+            </select>
+          </div><br>
+          <div class="inputbox">
+            <input type="password" name="password" id="password" placeholder="password">
+          </div><br>
+          <button type="submit">Register</button>
+    </form>
+    </div>
+    <br><br>
+    
+    <div>
+      <p>Already have an account? <a href="/auth/login">login</a> </p>
+    </div>
+</div>
+
+
+
