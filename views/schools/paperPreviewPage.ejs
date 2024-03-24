@@ -1,15 +1,9 @@
-
-
-
 <section class="viewerId">
    <p id="pastPaperPdf" style="display: none;"><%=pastPaperPdf %></p>
    <h2 class="modal-title"><%=pastPaperPdf %></h4>
      <div id="viewer"></div>
 
 </section>
-
-
-
 
 <script src="/js/webviewer.min.js"></script>
 
@@ -31,13 +25,13 @@
             'searchButton', // Disable search button
             'selectToolButton', // Disable select tool button
             'menuButton', // Disable menu button
-            // 'panel', // Disable panel button
-            // 'viewControlsButton' // Disable
+            'panel', // Disable panel button
+            'viewControlsButton' // Disable
         ],
         config: {
            showNavigationPanel: false
        }
     }, webView).then(instance => {
-        
+        instance.setTheme('dark');
     });
 </script>
