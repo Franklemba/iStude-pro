@@ -29,9 +29,10 @@ router.post("/signUp", async (req,res)=>{
     }
 
     console.log(`Username: ${firstName}, Password: ${password}`);
-    return res.render('auth/login',{
-      user
-    });
+    // return res.render('auth/login',{
+    //   user
+    // });
+    res.redirect('/schools');
   });
   }
   catch (error) {

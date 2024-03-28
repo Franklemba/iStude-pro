@@ -125,7 +125,7 @@ section{
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: url(https://istude.s3.ap-south-1.amazonaws.com/media/gradBackground.jpg) no-repeat;
+    background: url(/media/grads.jpg) no-repeat;
     background-size: cover;
     background-position: center;
     opacity: 1;

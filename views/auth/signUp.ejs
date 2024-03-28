@@ -18,19 +18,15 @@
 
 
         <div class="inputbox">
+          <label for="school">Select School: </label>
             <select name="school" id="school">
-                  <option value="School of Information & Communication Technology(SICT)">School of Information & Communication Technology</option>
-                  <option value="School of Business(SofB)">School of Business</option>
-                  <option value="School of Mathematics and Natural Sciences(SMNS)">School of Mathematics and Natural Sciences</option>
+                
             </select>
           </div><br>
         <div class="inputbox">
+          <label for="program">Select Program</label>
             <select name="program" id="program">
-                  <option value="Computer Science">Computer Science</option>
-                  <option value="Computer Engineering">Computer Engineering</option>
-                  <option value="Accountancy">Accountancy</option>
-                  <option value="Business Administration">Business Administration</option>
-                  <option value="Non Quota">Non Quota</option>
+                 
             </select>
           </div><br>
           <div class="inputbox">
@@ -46,5 +42,56 @@
     </div>
 </div>
 
+<script>
+       let school = document.getElementById('school')
+       let program = document.getElementById('program')
+
+       fetch('/JSON/cbuZit.json')
+     .then(response=> response.json())
+     .then(function(data){
+
+       ////////////////////////////school selection/////////////////////////////////////         
+        const schoolArray = []
+        const programArray = []
+        // const uniqueProgramArray = []
+
+        data.forEach(element=>{
+          
+          schoolArray.push(`<option label="${element.school}" value="${element.school}">${element.school}</option>`)
+          element.programs.forEach(program=>{
+                       if(school.value == element.school){
+                         programArray.push(`<option label="${program.programName}" value="${program.programName}">${program.programName}</option>`)
+                       }
+                    })
+
+                      
+       })
+      school.innerHTML = schoolArray
+      program.innerHTML = programArray   ////when there is a selection
+
+      console.log(school.value);
+                            
+////////////////////program selection starts here////////////////////////
+
+ 
+      ///////////////////eventListener////////////////////////
+
+            school.addEventListener('change',(e)=>{
+              const uniqueProgramArray = []
+                data.forEach(element =>{
+                  element.programs.forEach(program=>{
+                       if(e.target.value == element.school){
+                        uniqueProgramArray.push(`<option label="${program.programName}" value="${program.programName}">${program.programName}</option>`)
+                       }
+                    })
+                })
+
+                program.innerHTML = uniqueProgramArray   
+            })
 
 
+////////////////////program selection ends here////////////////////////
+
+    })
+
+</script>
